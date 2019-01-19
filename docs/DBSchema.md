@@ -17,8 +17,7 @@ Written in prerequisite order.
 
 - (K) Instructor ID
   - Autogen
-- First Name
-- Last Name
+- Name
 - Email
 - Website
 
