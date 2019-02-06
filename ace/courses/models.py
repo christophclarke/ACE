@@ -1,4 +1,5 @@
 from django.db import models
+from datetime import time
 
 
 class Department(models.Model):
@@ -32,23 +33,22 @@ class Course(models.Model):
 
 class Section(models.Model):
     # Auto Generated SectionID
-    course = models.ForeignKey(Course, on_delete=models.CASCADE)
-    available_seats = models.IntegerField()
-    enrolled_students = models.IntegerField()
-    section_type = models.CharField(max_length=255, blank=True)
-    section_number = models.IntegerField()
-    time_begin = models.TimeField()
-    time_end = models.TimeField()
-    monday = models.BooleanField()
-    tuesday = models.BooleanField()
-    wednesday = models.BooleanField()
-    thursday = models.BooleanField()
-    friday = models.BooleanField()
-    saturday = models.BooleanField()
-    sunday = models.BooleanField()
-    room = models.CharField(max_length=255)
-    special_enrollment = models.CharField(max_length=255, blank=True)
-    instructor = models.ForeignKey(Instructor, on_delete=models.CASCADE)
+    course: Course = models.ForeignKey(Course, on_delete=models.CASCADE)
+    available_seats: int = models.IntegerField()
+    enrolled_students: int = models.IntegerField()
+    section_type: str = models.CharField(max_length=255, blank=True)
+    section_number: int = models.IntegerField()
+    time_begin: time = models.TimeField()
+    time_end: time = models.TimeField()
+    monday: bool = models.BooleanField()
+    tuesday: bool = models.BooleanField()
+    wednesday: bool = models.BooleanField()
+    thursday: bool = models.BooleanField()
+    friday: bool = models.BooleanField()
+    saturday: bool = models.BooleanField()
+    room: str = models.CharField(max_length=255)
+    special_enrollment: str = models.CharField(max_length=255, blank=True)
+    instructor: Instructor = models.ForeignKey(Instructor, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.course.__str__() + " [" + str(self.section_number) + "]"
