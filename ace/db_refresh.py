@@ -1,8 +1,13 @@
+import os
 from bs4 import BeautifulSoup
 import requests
-from parsers import DepartmentPageParser
+import django
+from db_load.parsers import DepartmentPageParser
 from collections import namedtuple
-from ..courses.models import Section
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "ace.settings")
+django.setup()
+from courses.models import Section, Course, Department, Instructor
+
 
 DepartmentPage = namedtuple("DepartmentPage", ["name", "url"])
 
@@ -56,18 +61,24 @@ for dept in department_tuples:
 parser = DepartmentPageParser()
 
 for i in range(1):
-    tup = department_tuples[i]
-    dept_url = requests.compat.urljoin(root_url, tup.url)
+    department_tup = department_tuples[i]
+    dept_url = requests.compat.urljoin(root_url, department_tup.url)
     dept_page = requests.get(dept_url).text
     dept_soup = BeautifulSoup(dept_page, "html.parser")
     table = str(dept_soup.body.table.find_all("tr")[1].find_all("td")[1].pre.string).strip()
     sections = parser.parse_courses(table)
-    for section in sections:
-        section_model = Section()
-        section_model.available_seats = section.available_seats
-        section_model.enrolled_students = section.enrolled_students
-        section_model.section_type = section.section_type
-        section_model.section_number = section.section_number
-        section_model.time_begin = section.time_begin
-        section_model.time_end = section.time_end
-        section_model.monday = section.monday
+    for section_data in sections:
+        d: Department = Department.get_department(section_data.department, department_tup.name)
+        c: Course = Course.get_course(d, section_data.course_number, section_data.title, section_data.credit_hours)
+        i: Instructor = Instructor.get_instructor(section_data.instructor)
+        s: Section = Section.get_section(course=c,
+                                         section_number=section_data.section_number,
+                                         available=section_data.available,
+                                         enrolled=section_data.enrolled,
+                                         sec_type=section_data.section_type,
+                                         time_b=section_data.begin_time,
+                                         time_e=section_data.end_time,
+                                         days=section_data.days,
+                                         room=section_data.room,
+                                         special=section_data.special,
+                                         inst=i)

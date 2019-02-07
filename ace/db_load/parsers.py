@@ -1,21 +1,6 @@
 from datetime import time
-from collections import namedtuple
 from typing import List
-
-SectionTuple = namedtuple("SectionTuple", ["available",
-                                           "enrolled",
-                                           "department",
-                                           "number",
-                                           "section_type",
-                                           "section_number",
-                                           "title",
-                                           "credit_hours",
-                                           "begin_time",
-                                           "end_time",
-                                           "days",
-                                           "room",
-                                           "special",
-                                           "instructor"])
+from db_load.data_objects import SectionData
 
 
 class DepartmentPageParser:
@@ -35,31 +20,35 @@ class DepartmentPageParser:
     special_end = building_end + 16  # 116
     instructor_end = special_end + 14  # 130
 
-    def parse_courses(self, table) -> List[SectionTuple]:
+    def parse_courses(self, table) -> List[SectionData]:
         section_list = []
         table_lines = table.splitlines()
         for line in table_lines[3:21]:
             print(line)
             days = self.get_class_days(line)
             print(f"M: {days[0]} T: {days[1]} W: {days[2]} TH: {days[3]} F: {days[4]} S: {days[5]}")
-            times = self.get_times(line)
-            tup = SectionTuple(available=self.get_available_sets(line),
-                               enrolled=self.get_enrolled_students(line),
-                               department=self.get_department(line),
-                               number=self.get_course_number(line),
-                               section_type=self.get_section_type(line),
-                               section_number=self.get_section_number(line),
-                               title=self.get_title(line),
-                               credit_hours=self.get_credit_hours(line),
-                               begin_time=times[0],
-                               end_time=times[1],
-                               days=self.get_class_days(line),
-                               room=self.get_room(line),
-                               special=self.get_special_enrollment(line),
-                               instructor=self.get_instructor(line))
-            section_list.append(tup)
+            data = self.parse_course_line(line)
+            section_list.append(data)
 
         return section_list
+
+    def parse_course_line(self, line: str) -> (SectionData, bool):
+        times = self.get_times(line)
+        data = SectionData(available=self.get_available_sets(line),
+                           enrolled=self.get_enrolled_students(line),
+                           department=self.get_department(line),
+                           course_number=self.get_course_number(line),
+                           section_type=self.get_section_type(line),
+                           section_number=self.get_section_number(line),
+                           title=self.get_title(line),
+                           credit_hours=self.get_credit_hours(line),
+                           begin_time=times[0],
+                           end_time=times[1],
+                           days=self.get_class_days(line),
+                           room=self.get_room(line),
+                           special=self.get_special_enrollment(line),
+                           instructor=self.get_instructor(line))
+        return data
 
     @staticmethod
     def get_raw_string(line: str, begin: int, end: int) -> str:
@@ -92,20 +81,20 @@ class DepartmentPageParser:
         raw = self.get_raw_string(line, self.num_end, self.type_end)
         return raw
 
-    def get_section_number(self, line: str):
+    def get_section_number(self, line: str) -> int:
         """Returns section as int"""
         raw = self.get_raw_string(line, self.type_end, self.sec_num_end)
         return int(raw)
 
-    def get_title(self, line: str):
+    def get_title(self, line: str) -> str:
         """Returns raw title string"""
         raw = self.get_raw_string(line, self.sec_num_end, self.title_end)
         return raw
 
-    def get_credit_hours(self, line: str):
+    def get_credit_hours(self, line: str) -> int:
         """Returns number of credit hours as float"""
         raw = self.get_raw_string(line, self.title_end, self.credit_hours_end)
-        return float(raw)
+        return int(float(raw))
 
     def get_times(self, line: str) -> (time, time):
         begin_night = False
@@ -163,17 +152,17 @@ class DepartmentPageParser:
 
         return is_monday(), is_tuesday(), is_wednesday(), is_thursday(), is_friday(), is_saturday()
 
-    def get_room(self, line: str):
+    def get_room(self, line: str) -> str:
         """Returns raw room string"""
         raw = self.get_raw_string(line, self.day_block_end, self.building_end)
         return raw
 
-    def get_special_enrollment(self, line: str):
+    def get_special_enrollment(self, line: str) -> str:
         """Returns raw special enrollment string"""
         raw = self.get_raw_string(line, self.building_end, self.special_end)
         return raw
 
-    def get_instructor(self, line: str):
+    def get_instructor(self, line: str) -> str:
         """Returns raw instructor string"""
         raw = self.get_raw_string(line, self.special_end, self.instructor_end)
         return raw
