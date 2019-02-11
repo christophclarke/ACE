@@ -1,6 +1,6 @@
 from datetime import time
 from typing import List
-from db_load.data_objects import SectionData
+from db_load.data_objects import SectionData, LabSectionData
 
 
 class DepartmentPageParser:
@@ -21,18 +21,54 @@ class DepartmentPageParser:
     instructor_end = special_end + 14  # 130
 
     def parse_courses(self, table) -> List[SectionData]:
-        section_list = []
-        table_lines = table.splitlines()
-        for line in table_lines[3:21]:
-            print(line)
-            days = self.get_class_days(line)
-            print(f"M: {days[0]} T: {days[1]} W: {days[2]} TH: {days[3]} F: {days[4]} S: {days[5]}")
-            data = self.parse_course_line(line)
-            section_list.append(data)
 
+        def append_additional_info(info: str, ind=-1):
+            sec: SectionData = section_list[ind]
+            sec.additional = info
+
+        def append_lab_to_previous(parsed_section: SectionData) -> None:
+            old_data: SectionData = section_list[-1]
+            lab_section = LabSectionData(section_type=parsed_section.section_type,
+                                         begin_time=parsed_section.begin_time,
+                                         end_time=parsed_section.end_time,
+                                         days=parsed_section.days,
+                                         room=parsed_section.room,
+                                         instructor=parsed_section.instructor)
+            old_data.lab = lab_section
+
+        section_list = []
+        original = table.splitlines()
+        filtered = [line for line in original if line.strip() != '']
+        table_lines = filtered[3:-1]
+        for line in table_lines:
+            print(line)
+            if line.strip() == "":
+                # Empty Line
+                continue
+            if line.lstrip().startswith("***"):
+                # Comment Line
+                continue
+            if line.lstrip().startswith("**"):
+                # Additional Info Line
+                append_additional_info(line.replace("*", "").strip())
+                continue
+            if self.get_raw_string(line, self.credit_hours_end, self.time_block_end) == "":
+                # If no time, skip
+                continue
+            data = self.parse_course_line(line)
+            if data.available < 0:
+                # Doesn't have available seats, must be related to previous
+                append_lab_to_previous(data)
+                continue
+            section_list.append(data)
         return section_list
 
-    def parse_course_line(self, line: str) -> (SectionData, bool):
+    def parse_course_line(self, line: str) -> SectionData:
+        """
+        Returns a SectionData object with the appropriate information parsed from the line
+        :param line: the individual line of the table
+        :return: Section Data dataobject and a bool as to whether or not to append this data to previous section
+        """
         times = self.get_times(line)
         data = SectionData(available=self.get_available_sets(line),
                            enrolled=self.get_enrolled_students(line),
@@ -48,6 +84,7 @@ class DepartmentPageParser:
                            room=self.get_room(line),
                            special=self.get_special_enrollment(line),
                            instructor=self.get_instructor(line))
+
         return data
 
     @staticmethod
@@ -57,14 +94,14 @@ class DepartmentPageParser:
     def get_available_sets(self, line: str) -> int:
         """Return number of available seats as int"""
         raw = self.get_raw_string(line, self.begin, self.available_end)
-        if raw == "(F)":
-            raw = 0
-        return int(raw)
+        if raw == "(F)" or raw == "(H)":
+            raw = "0"
+        return int(raw) if raw else -1
 
     def get_enrolled_students(self, line: str) -> int:
         """Returns number of enrolled students as int"""
         raw = self.get_raw_string(line, self.available_end, self.enrolled_end)
-        return int(raw)
+        return int(raw) if raw else 0
 
     def get_department(self, line: str) -> str:
         """Returns department as raw string"""
@@ -74,7 +111,7 @@ class DepartmentPageParser:
     def get_course_number(self, line: str) -> int:
         """Returns course number as int"""
         raw = self.get_raw_string(line, self.abbr_end, self.num_end)
-        return int(raw)
+        return int(raw) if raw else -1
 
     def get_section_type(self, line: str) -> str:
         """Returns section type as raw string"""
@@ -84,22 +121,24 @@ class DepartmentPageParser:
     def get_section_number(self, line: str) -> int:
         """Returns section as int"""
         raw = self.get_raw_string(line, self.type_end, self.sec_num_end)
-        return int(raw)
+        return int(raw) if raw else -1
 
     def get_title(self, line: str) -> str:
         """Returns raw title string"""
         raw = self.get_raw_string(line, self.sec_num_end, self.title_end)
         return raw
 
-    def get_credit_hours(self, line: str) -> int:
+    def get_credit_hours(self, line: str) -> str:
         """Returns number of credit hours as float"""
         raw = self.get_raw_string(line, self.title_end, self.credit_hours_end)
-        return int(float(raw))
+        return raw
 
     def get_times(self, line: str) -> (time, time):
         begin_night = False
         end_night = False
         raw = self.get_raw_string(line, self.credit_hours_end, self.time_block_end)
+        if raw == "TBA":
+            return None, None
         if raw.endswith('N'):
             raw = raw.replace('N', "")
             begin_night = True
