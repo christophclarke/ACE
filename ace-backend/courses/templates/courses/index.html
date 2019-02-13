@@ -50,6 +50,14 @@
             }
         }
 
+        function getLink(text) {
+            const split_text = text.split(" ");
+            const a = document.createElement("a");
+            a.setAttribute("href", window.location.href + `courses/${split_text[0]}/${split_text[1]}`);
+            a.innerHTML = text;
+            return a
+        }
+
         document.addEventListener("DOMContentLoaded", loadDeptList);
         document.addEventListener("DOMContentLoaded", loadCourseList);
 
@@ -71,7 +79,7 @@
                     list.appendChild(dept_list);
                     value.forEach( (crs) => {
                         let course_elem = document.createElement("li");
-                        course_elem.innerHTML = crs;
+                        course_elem.appendChild(getLink(crs));
                         dept_list.appendChild(course_elem)
                     })
                 }

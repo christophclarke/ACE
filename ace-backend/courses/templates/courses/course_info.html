@@ -1,0 +1,18 @@
+<head>
+    <title>{{ course|stringformat:"s" }}</title>
+</head>
+<body>
+    <h1>Course Info</h1>
+    <ul id="info">
+        <li>Department: {{ course.department }}</li>
+        <li>Course Number: {{ course.course_number }}</li>
+        <li>Course Title: {{ course.course_title }}</li>
+        <li>Credit Hours: {{ course.credit_hours }}</li>
+    </ul>
+    <h2>Sections</h2>
+    <ul>
+        {% for section in sections %}
+            <li>Section {{ section.section_number }} | {{ section.instructor }}</li>
+        {% endfor %}
+    </ul>
+</body>

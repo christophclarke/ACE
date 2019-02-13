@@ -1,7 +1,7 @@
 from django.http import JsonResponse
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 
-from .models import Course, Department
+from .models import Course, Department, Section
 
 
 def index(request):
@@ -26,3 +26,9 @@ def course_list(request, dept="all"):
         ret_dict[department.abbreviation] = dept_list
 
     return JsonResponse(ret_dict)
+
+
+def course_info(request, dept, course_number):
+    course = get_object_or_404(Course, department=dept, course_number=int(course_number))
+    sections = list(Section.objects.filter(course=course))
+    return render(request, "courses/course_info.html", {"course": course, "sections": sections})
