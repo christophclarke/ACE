@@ -64,6 +64,9 @@
             const list = document.getElementById("output-list");
             for (let [key, value] of Object.entries(courses)) {
                 if (key.startsWith(input.value.toUpperCase())) {
+                    let dept_head = document.createElement("li");
+                    dept_head.innerHTML = key;
+                    list.appendChild(dept_head);
                     let dept_list = document.createElement("ul");
                     list.appendChild(dept_list);
                     value.forEach( (crs) => {
