@@ -1,0 +1,117 @@
+<head>
+    <title></title>
+</head>
+<body>
+    <input autocomplete="off" list="departments" autofocus placeholder="Department" type="text">
+    <datalist id="departments">
+
+    </datalist>
+
+    <ul id="output-list"></ul>
+
+    <script>
+        let courses;
+        let departments;
+
+        function displayDepartments() {
+            if (departments == null) {
+                return
+            }
+            console.log("displaying departments");
+            const list = document.getElementById("output-list");
+            departments.forEach( (elem) => {
+                let dept_head = document.createElement("li");
+                dept_head.innerHTML = elem;
+                list.appendChild(dept_head);
+            })
+        }
+
+        function displayCourses() {
+            if (courses == null) {
+                console.log("returning courses undefined");
+                return
+            }
+            clearList();
+            console.log("displaying courses");
+            const list = document.getElementById("output-list");
+            if (input.value.trim() === "") {
+                displayDepartments();
+                return
+            }
+            for (let [key, value] of Object.entries(courses)) {
+                if (key.startsWith(input.value.trim().toUpperCase())) {
+                    let dept_head = document.createElement("li");
+                    dept_head.innerHTML = key;
+                    list.appendChild(dept_head);
+                    let dept_list = document.createElement("ul");
+                    list.appendChild(dept_list);
+                    value.forEach( (crs) => {
+                        let course_elem = document.createElement("li");
+                        course_elem.appendChild(getLink(crs));
+                        dept_list.appendChild(course_elem)
+                    })
+                }
+            }
+            if (list.innerHTML === "") {
+                const elem = document.createElement("li");
+                elem.innerHTML = "No Courses Found For " + input.value;
+                list.appendChild(elem)
+            }
+        }
+
+        function loadDeptList() {
+            const request = new XMLHttpRequest();
+            console.log("Getting Response");
+            request.open("GET", "/department-list");
+            request.onload = () => {
+                console.log("departments loaded");
+                const response = request.responseText;
+                departments = JSON.parse(response);
+                console.log(departments);
+                departments.forEach( (element) => {
+                    let d_elem = document.createElement("option");
+                    d_elem.setAttribute("value", element);
+                    document.getElementById("departments").append(d_elem)
+                });
+                displayDepartments();
+            };
+            request.send()
+        }
+
+        function loadCourseList() {
+            const request = new XMLHttpRequest();
+            console.log("Getting Response");
+            request.open("GET", "/course-list");
+            request.onload = () => {
+                console.log("courses loaded");
+                const response = request.responseText;
+                courses = JSON.parse(response);
+                console.log(courses);
+            };
+            request.send();
+        }
+
+        function clearList() {
+            console.log("Clearing list");
+            const myNode = document.getElementById("output-list");
+            while (myNode.firstChild) {
+                myNode.removeChild(myNode.firstChild);
+            }
+        }
+
+        function getLink(text) {
+            const split_text = text.split(" ");
+            const a = document.createElement("a");
+            a.setAttribute("href", `courses/${split_text[0]}/${split_text[1]}`);
+            a.innerHTML = text;
+            return a
+        }
+
+        document.addEventListener("DOMContentLoaded", loadDeptList);
+        document.addEventListener("DOMContentLoaded", loadCourseList);
+
+        let input = document.querySelector("input");
+        input.addEventListener("keyup", displayCourses)
+    </script>
+</body>
+

@@ -50,7 +50,7 @@ class Instructor(models.Model):
 
 class Course(models.Model):
     # Auto Generated CourseID
-    department = models.ForeignKey(Department, on_delete=models.CASCADE)
+    department = models.ForeignKey(Department, on_delete=models.CASCADE, related_name="courses")
     course_number = models.IntegerField()
     course_title = models.CharField(max_length=255)
     credit_hours = models.CharField(max_length=16)
@@ -89,7 +89,7 @@ class LabSection(models.Model):
     saturday: bool = models.BooleanField()
     room: str = models.CharField(max_length=255, blank=True)
     special_enrollment: str = models.CharField(max_length=255, blank=True)
-    instructor: Instructor = models.ForeignKey(Instructor, on_delete=models.CASCADE)
+    instructor: Instructor = models.ForeignKey(Instructor, on_delete=models.CASCADE, related_name="lab_sections")
 
     logger = logging.getLogger("LabSection")
 
@@ -122,7 +122,7 @@ class LabSection(models.Model):
 
 class Section(models.Model):
     # Auto Generated SectionID
-    course: Course = models.ForeignKey(Course, on_delete=models.CASCADE)
+    course: Course = models.ForeignKey(Course, on_delete=models.CASCADE, related_name="sections")
     available_seats: int = models.IntegerField()
     enrolled_students: int = models.IntegerField()
     section_type: str = models.CharField(max_length=255, blank=True)
@@ -137,7 +137,7 @@ class Section(models.Model):
     saturday: bool = models.BooleanField()
     room: str = models.CharField(max_length=255)
     special_enrollment: str = models.CharField(max_length=255, blank=True)
-    instructor: Instructor = models.ForeignKey(Instructor, on_delete=models.CASCADE)
+    instructor: Instructor = models.ForeignKey(Instructor, on_delete=models.CASCADE, related_name="sections")
     additional_info: str = models.TextField(blank=True)
     lab_section = models.ForeignKey(LabSection, on_delete=models.SET_NULL, null=True)
 
