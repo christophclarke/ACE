@@ -8,6 +8,10 @@ def index(request):
     return render(request, "courses/index.html")
 
 
+def course_search(request):
+    return render(request, "courses/course_search.html")
+
+
 def department_list(request):
     data = list(Department.objects.values_list("abbreviation", flat=True))
     return JsonResponse(data, safe=False)
