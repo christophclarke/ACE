@@ -23,6 +23,3 @@ urlpatterns = [
     re_path(r'^', include(course_router.urls)),
     # re_path(r'^', include(sections_router.urls))
 ]
-
-for url in course_router.urls:
-    print(url)
