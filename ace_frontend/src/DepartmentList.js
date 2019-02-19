@@ -6,17 +6,14 @@ const axios = require('axios');
 
 class DepartmentList extends Component {
 
-    // state = {
-    //     data: [],
-    //     search: ""
-    // }
-
     constructor() {
         super();
         this.state = {
             data: [],
             search: ""
-        }
+        };
+
+        this.handleChange = this.handleChange.bind(this);
     }
 
     componentDidMount() {
@@ -50,6 +47,7 @@ class DepartmentList extends Component {
         let filteredData = this.state.data.filter(
             (department) => {
                 return department['full_name'].toUpperCase().includes(this.state.search.toUpperCase())
+                || department['abbreviation'].toUpperCase().includes(this.state.search.toUpperCase())
             }
         )
 
@@ -62,8 +60,15 @@ class DepartmentList extends Component {
 
         return (
             <div>
-                <input type="text" onChange={this.handleChange.bind(this)}/>
-                <div className="container">{result}</div>
+                <h1 className="search-header">Department Search</h1>
+                <input 
+                    className="search-bar"
+                    placeholder="Computer Science"
+                    type="text"
+                    value={this.state.search}
+                    onChange={this.handleChange}
+                />
+                <div className="bubble-container">{result}</div>
             </div>
         );
     }
