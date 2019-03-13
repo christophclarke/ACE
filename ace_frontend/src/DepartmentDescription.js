@@ -4,7 +4,7 @@ import CourseList from './CourseList';
 
 const axios = require('axios');
 
-class DepartmentFull extends Component {
+class DepartmentDescription extends Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -65,11 +65,14 @@ class DepartmentFull extends Component {
         return (
             <div className="container">
                 <h1>{this.state.departmentData['full_name']}</h1>
-                <Link to="/departments">Go Back</Link>
-                <CourseList url={this.state.apiUrl + "/departments/" + this.state.dept} dept={this.state.dept}/>
+                {/* <Link to="/departments">Go Back</Link> */}
+                <Route exact path={this.props.match.url + "/"} render={(props)=> (
+                    <CourseList url={this.state.apiUrl + "/departments/" + this.state.dept} dept={this.state.dept}/>
+                )}/>
+                <Route path={this.props.match.url + "/:course"} render={(props) => <p>{props.match.params.course}</p>} />
             </div>
         )
     }
 }
 
-export default DepartmentFull
+export default DepartmentDescription

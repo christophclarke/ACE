@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Home from './Home'
 import DepartmentList from './DepartmentList'
-import DepartmentFull from './DepartmentFull'
+import DepartmentDescription from './DepartmentDescription'
 import AceNav from './AceNav'
 import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 // import BasicExample from './BasicExample';
@@ -23,8 +23,7 @@ class App extends Component {
                         <DepartmentList url={this.state.url}/>
                     } />
                     <Route path="/:department/:course/:section" render={(props) => <p>{props.match.params.course + " Section " + props.match.params.section}</p>} />
-                    <Route path="/:department/:course" render={(props) => <p>{props.match.params.course}</p>} />
-                    <Route path="/:department" component={DepartmentFull} />
+                    <Route path="/:department" component={DepartmentDescription} />
                     <Route path="/" component={Home} />
                 </Switch>
             </div>
