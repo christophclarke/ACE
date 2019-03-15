@@ -1,0 +1,20 @@
+version: '3'
+
+services:
+  ace-backend:
+    build: ./ace_backend
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - ./ace_backend:/code/ace_backend
+    ports:
+      - "8000:8000"
+
+  ace-frontend:
+    build: ./ace_frontend
+    command: npm start
+    volumes:
+      - ./ace_frontend:/code/ace_frontend
+    ports:
+      - "3000:3000"
+    depends_on:
+      - ace-backend
