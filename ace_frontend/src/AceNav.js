@@ -4,7 +4,7 @@ import Nav from 'react-bootstrap/Nav'
 import {Link} from 'react-router-dom';
 
 const AceNav = () => (
-    <Navbar collapseOnSelect expand="lg" bg="primary" variant="dark" style={{marginBottom: 25}}>
+    <Navbar collapseOnSelect expand="lg" bg="primary" variant="dark">
         <Navbar.Brand href="/">ACE Courses</Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
