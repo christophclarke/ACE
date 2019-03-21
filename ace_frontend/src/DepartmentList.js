@@ -17,7 +17,7 @@ class DepartmentList extends Component {
     }
 
     componentDidMount() {
-        const url = this.props.url + "/departments/"
+        const url = this.props.url + "departments/"
 
         axios.get(url)
             .then((response) => {
@@ -68,7 +68,7 @@ class DepartmentList extends Component {
                     type="text"
                     value={this.state.search}
                     onChange={this.handleChange}
-                    autofocus="true"
+                    autoFocus={true}
                 />
                 <div className="bubble-container">{result}</div>
             </div>
