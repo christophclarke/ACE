@@ -1,10 +1,11 @@
--e git+https://github.com/christophclarke/ACE.git@919dea736181f546c8af2ed64b0f365ebfb2ffa4#egg=ace_backend
 beautifulsoup4==4.7.1
 certifi==2018.11.29
 chardet==3.0.4
 Django==2.1.7
+django-cors-headers==2.4.0
 django-filter==2.1.0
 djangorestframework==3.9.1
+drf-nested-routers==0.91
 entrypoints==0.3
 flake8==3.7.4
 idna==2.8
