@@ -2,6 +2,7 @@ version: '3'
 
 services:
   ace-backend:
+    container_name: ace-backend
     build: ./ace_backend
     command: python manage.py runserver 0.0.0.0:8000
     volumes:
@@ -10,6 +11,7 @@ services:
       - "8000:8000"
 
   ace-frontend:
+    container_name: ace-frontend
     build: ./ace_frontend
     command: npm start
     volumes:

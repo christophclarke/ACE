@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 // import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
-import CourseBubble from './CourseCard.js'
+import CourseCard from './CourseCard.js'
 // import DepartmentFull from './DepartmentFull';
 
 const axios = require('axios');
@@ -11,7 +11,6 @@ class CourseList extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            apiUrl: this.props.url,
             data: [],
             search: ""
         };
@@ -20,7 +19,7 @@ class CourseList extends Component {
     }
 
     componentDidMount() {
-        const url = this.state.apiUrl + "/courses/"
+        const url = this.props.url + "/departments/" + this.props.department + "/courses/"
 
         axios.get(url)
             .then((response) => {
@@ -56,8 +55,9 @@ class CourseList extends Component {
         )
 
         const result = filteredData.map((entry, index) => {
-            return <CourseBubble
-                        apiUrl={this.state.apiUrl}
+            return <CourseCard
+                        url={this.props.url}
+                        department={this.props.department}
                         key={index}
                         data={entry}
                     />;
@@ -65,14 +65,14 @@ class CourseList extends Component {
 
         return (
             <div>
-                <h1 className="search-header">{this.props.dept} Search</h1>
+                <h1 className="search-header">{this.props.department} Search</h1>
                 <input 
                     className="search-bar"
                     placeholder="1204"
                     type="text"
                     value={this.state.search}
                     onChange={this.handleChange}
-                    autofocus="true"
+                    autoFocus={true}
                 />
                 <div className="bubble-container">{result}</div>
             </div>

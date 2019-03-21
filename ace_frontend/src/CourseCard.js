@@ -10,7 +10,6 @@ class CourseCard extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            apiUrl: this.props.apiUrl,
             isExpanded: false,
             data: this.props.data,
             sections: []
@@ -19,7 +18,7 @@ class CourseCard extends Component {
     }
 
     componentDidMount() {
-        const url = `${this.state.apiUrl}/courses/${this.props.data['course_number']}/sections/`
+        const url = `${this.props.url}/departments/${this.props.department}/courses/${this.props.data['course_number']}/sections/`
         axios.get(url)
             .then((response) => {
                 const data = response.data

@@ -22,18 +22,19 @@ class App extends Component {
                     <Route exact path="/" component={Home} />
                     
                     {/* The route to the department search */}
-                    <Route exact path="/departments" render={() =>
-                        <DepartmentList url={this.state.url}/>
-                    } />
+                    <Route exact path="/departments" render={props => <DepartmentList {...props} url={this.state.url}/>} />
                     
                     {/* The route to a specific course section */}
-                    <Route path="/:department/:course/:section" render={(props) => 
+                    {/* <Route path="/:department/:course/:section" render={(props) => 
                         <p>{props.match.params.course + " Section " + props.match.params.section}</p>
-                    } />
+                    } /> */}
                     
-                    <Route path="/:department/:course" render={(props) => <p>{props.match.params.course}</p>} />
+                    {/* <Route path="/:department/:course" render={(props) => <p>{props.match.params.course}</p>} /> */}
                     
-                    <Route path="/:department" component={DepartmentDescription} />
+                    <Route 
+                        path="/:department"
+                        render={props => <DepartmentDescription {...props} url={this.state.url} department={props.match.params.department}/>}
+                    />
                 </Switch>
             </div>
         )
