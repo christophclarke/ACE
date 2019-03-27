@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
+import React from 'react';
+import { Link } from "react-router-dom";
 import Jumbotron from "react-bootstrap/Jumbotron";
 import Button from "react-bootstrap/Button";
 
@@ -15,7 +15,7 @@ const Home = () => (
             <p>
                 <Button variant="primary">Learn more</Button>
             </p>
-        <Link to="/departments">Go To The Department Search</Link>
+        <Link to="/search/departments">Go To The Department Search</Link>
         </Jumbotron>;
     </div>
 );

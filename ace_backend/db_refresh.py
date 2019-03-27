@@ -27,7 +27,7 @@ def reload_db():
 
         return ret_list
 
-    semester = "Spring 2019"
+    semester = "Fall  2019"
     root_url = "http://appl101.lsu.edu"
     booklet_lobby = "/booklet2.nsf/bed33d8925ab561b8625651700585b85?OpenView&Start=1&Count=500&CollapseView"
 
@@ -47,7 +47,9 @@ def reload_db():
 
     for row in link_table.find_all("tr"):
         if row.td is not None:
+            print("row td not none")
             for string in row.td.strings:
+                print(string)
                 if string == semester:
                     print(string)
                     expanded_path = row.td.a['href']
@@ -55,6 +57,7 @@ def reload_db():
                     expanded_view = requests.get(expanded_view_url).text
                     department_tuples = get_department_urls(expanded_view)
 
+    print(f"Number of Department Tuples: {len(department_tuples)}")
     parser = DepartmentPageParser()
 
     for department_tup in department_tuples:

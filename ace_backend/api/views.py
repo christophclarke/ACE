@@ -1,7 +1,8 @@
 from django.contrib.auth.models import User, Group
 from courses.models import Department, Course, Section
 from django.shortcuts import get_object_or_404
-from rest_framework import viewsets
+from knox.models import AuthToken
+from rest_framework import viewsets, generics, permissions
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from . import serializers
@@ -94,3 +95,37 @@ class SectionViewSet(viewsets.ViewSet):
         section = get_object_or_404(queryset)
         serializer = serializers.SectionSerializer(section)
         return Response(serializer.data)
+
+
+class RegistrationAPI(generics.GenericAPIView):
+    serializer_class = serializers.CreateUserSerializer
+
+    def post(self, request, *args, **kwargs):
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        user = serializer.save()
+        return Response({
+            "user": serializers.UserSerializer(user, context=self.get_serializer_context()).data,
+            "token": AuthToken.objects.create(user)
+        })
+
+
+class LoginAPI(generics.GenericAPIView):
+    serializer_class = serializers.LoginUserSerializer
+
+    def post(self, request, *args, **kwargs):
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        user = serializer.validated_data
+        return Response({
+            "user": serializers.UserSerializer(user, context=self.get_serializer_context()).data,
+            "token": AuthToken.objects.create(user)
+        })
+
+
+class UserAPI(generics.RetrieveAPIView):
+    permission_classes = [permissions.IsAuthenticated, ]
+    serializer_class = serializers.UserSerializer
+
+    def get_object(self):
+        return self.request.user

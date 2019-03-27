@@ -77,7 +77,7 @@ class CourseCard extends Component {
         return (
             <Card>
                 <Card.Header as="h4">
-                    <Link to={`/${this.props.data['department']}/${this.props.data['course_number']}`}>
+                    <Link to={`/search/${this.props.data['department']}/${this.props.data['course_number']}`}>
                         {this.props.data['course_number']}
                     </Link>
                 </Card.Header>

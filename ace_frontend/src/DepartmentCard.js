@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Card from 'react-bootstrap/Card'
-import Collapse from 'react-bootstrap/Collapse'
-import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
+// import Collapse from 'react-bootstrap/Collapse'
+import { Link } from "react-router-dom";
 
 
 const axios = require('axios');
@@ -55,48 +55,37 @@ class DepartmentCard extends Component {
             )
         });
 
-        let classes;
-        if (!this.state.isExpanded) {
-            classes = ['additional', 'additional-hidden']
-        } else {
-            classes = ['additional']
-        }
-
         return (
             <Card>
-                <Card.Header as="h4">
-                    <Link to={"/" + this.props.data['abbreviation']}>
-                        {this.props.data['abbreviation']}
-                    </Link>
-                </Card.Header>
                 <Card.Body>
                     <Card.Title>
-                        {this.props.data['full_name']}
+                        <Link to={"/search/" + this.props.data['abbreviation']}>
+                            {this.props.data['abbreviation']}
+                        </Link>
                     </Card.Title>
                     <Card.Subtitle className="mb-2 text-muted">
-
+                        {this.props.data['full_name']}
                     </Card.Subtitle>
                     <Card.Text>
-                        Some quick example text to build on the card title and make up the bulk of
-                        the card's content.
+                        {this.state.courses.length} Courses
                     </Card.Text>
                     {/* <ul className={classes.join(' ')}>{info}</ul> */}
-                    <Collapse in={this.state.isExpanded}>
+                    {/* <Collapse in={this.state.isExpanded}>
                         <div id="example-collapse-text">
                             Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus
                             terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer
                             labore wes anderson cred nesciunt sapiente ea proident.
                         </div>
-                    </Collapse>
+                    </Collapse> */}
                 </Card.Body>
-                <Card.Footer>
+                {/* <Card.Footer>
                     <big onClick={this.handleClick}
                         aria-controls="example-collapse-text"
                         aria-expanded={this.state.isExpanded}
                     >
                         {this.state.isExpanded ? "-" : "+"}
                     </big>
-                </Card.Footer>
+                </Card.Footer> */}
             </Card>
         )
     }
