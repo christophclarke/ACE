@@ -22,4 +22,7 @@ urlpatterns = [
     re_path(r'^', include(department_router.urls)),
     re_path(r'^', include(course_router.urls)),
     # re_path(r'^', include(sections_router.urls))
+    re_path("^auth/register/$", views.RegistrationAPI.as_view()),
+    re_path("^auth/login/$", views.LoginAPI.as_view()),
+    re_path("^auth/user/$", views.UserAPI.as_view()),
 ]

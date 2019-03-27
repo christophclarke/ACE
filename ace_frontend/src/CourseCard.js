@@ -10,7 +10,6 @@ class CourseCard extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            apiUrl: this.props.apiUrl,
             isExpanded: false,
             data: this.props.data,
             sections: []
@@ -19,7 +18,7 @@ class CourseCard extends Component {
     }
 
     componentDidMount() {
-        const url = `${this.state.apiUrl}/courses/${this.props.data['course_number']}/sections/`
+        const url = `${this.props.url}/departments/${this.props.department}/courses/${this.props.data['course_number']}/sections/`
         axios.get(url)
             .then((response) => {
                 const data = response.data
@@ -50,9 +49,20 @@ class CourseCard extends Component {
 
     render() {
         const info = this.state.sections.map((entry, index) => {
+            var begin = new Date('1970-01-01T' + entry['time_begin'] + 'Z')
+            var end = new Date('1970-01-01T' + entry['time_end'] + 'Z')
             return (
                 <li key={entry['section_number']}>
-                    {`${entry['section_number']} | ${entry['instructor']}`}
+                    {`${entry['section_number']} | ${entry['instructor']} \xa0\xa0\xa0\xa0`}
+                    <span className="text-muted">
+                        {entry['monday'] ? "M " : ""}
+                        {entry['tuesday'] ? "T " : ""}
+                        {entry['wednesday'] ? "W " : ""}
+                        {entry['thursday'] ? "Th " : ""}
+                        {entry['friday'] ? "F " : ""}
+                        {entry['saturday'] ? "S " : ""}
+                        {`${begin.getHours()}:${begin.getMinutes()} - ${end.getHours()}:${end.getMinutes()}`}
+                    </span>
                 </li>
             )
         });
@@ -67,7 +77,7 @@ class CourseCard extends Component {
         return (
             <Card>
                 <Card.Header as="h4">
-                    <Link to={`/${this.props.data['department']}/${this.props.data['course_number']}`}>
+                    <Link to={`/search/${this.props.data['department']}/${this.props.data['course_number']}`}>
                         {this.props.data['course_number']}
                     </Link>
                 </Card.Header>
@@ -76,7 +86,7 @@ class CourseCard extends Component {
                         {this.props.data['course_title']}
                     </Card.Title>
                     <Card.Subtitle className="mb-2 text-muted">
-
+                        {this.props.data['credit_hours']} Credit Hours
                     </Card.Subtitle>
                     <Card.Text>
                         Some quick example text to build on the card title and make up the bulk of

@@ -8,15 +8,13 @@ class DepartmentDescription extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            dept: this.props.match.params.department,
-            apiUrl: "http://ec2-3-17-67-110.us-east-2.compute.amazonaws.com:8000/api",
             departmentData: {},
             courses: []
         }
     }
 
     componentDidMount() {
-        const departmentUrl = `${this.state.apiUrl}/departments/${this.state.dept}`;
+        const departmentUrl = `${this.props.url}/departments/${this.props.department}`;
         axios.get(departmentUrl)
             .then((response) => {
                 const data = response.data;
@@ -34,7 +32,7 @@ class DepartmentDescription extends Component {
                 // always executed
             });
 
-        const coursesUrl = `${this.state.apiUrl}/departments/${this.state.dept}/courses`;
+        const coursesUrl = `${departmentUrl}/courses`;
         axios.get(coursesUrl)
             .then((response) => {
                 const data = response.data
@@ -67,7 +65,7 @@ class DepartmentDescription extends Component {
                 <h1>{this.state.departmentData['full_name']}</h1>
                 {/* <Link to="/departments">Go Back</Link> */}
                 <Route exact path={this.props.match.url + "/"} render={(props)=> (
-                    <CourseList url={this.state.apiUrl + "/departments/" + this.state.dept} dept={this.state.dept}/>
+                    <CourseList url={this.props.url} department={this.props.department}/>
                 )}/>
                 <Route path={this.props.match.url + "/:course"} render={(props) => <p>{props.match.params.course}</p>} />
             </div>
