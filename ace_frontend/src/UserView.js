@@ -1,5 +1,6 @@
 import React from 'react'
-import {Redirect} from 'react-router-dom'
+import { Redirect } from 'react-router-dom'
+import { Button } from 'react-bootstrap';
 
 const axios = require('axios')
 
@@ -9,6 +10,7 @@ class UserView extends React.Component {
         this.state = {
             userData: {}
         }
+        this.logout = this.logout.bind(this);
     }
 
     componentDidMount() {
@@ -34,6 +36,27 @@ class UserView extends React.Component {
             });
     }
 
+    logout() {
+        const url = `${this.props.url}auth/logout/`
+        console.log("logging out on " + url);
+        axios.post(url, {}, {
+            headers: {
+                "Authorization": "Token " + localStorage.getItem('token')
+            }
+        })
+            .then((response) => {
+                console.log("logout success")
+                console.log(response)
+                console.log("removing token from localstorage")
+                localStorage.removeItem('token')
+                this.props.authHandle(false, '')
+            })
+            .catch((function (error) {
+                console.log("error logging out")
+                console.log(error.response)
+            }))
+    }
+
     render() {
 
         if (!this.props.isAuthenticated) {
@@ -42,7 +65,10 @@ class UserView extends React.Component {
         }
 
         return (
-            JSON.stringify(this.state.userData)
+            <div>
+                {JSON.stringify(this.state.userData)}
+                <Button onClick={this.logout}>Logout</Button>
+            </div>
         )
     }
 }

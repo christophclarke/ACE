@@ -12,26 +12,32 @@ const axios = require('axios')
 class App extends Component {
     constructor(props) {
         super(props)
-        this.updateAuth = this.updateAuth.bind(this)
-        this.getUser = this.getUser.bind(this)
         this.state = {
             url: "/api/",
             isAuthenticated: localStorage.getItem('token') ? true : false,
             username: ''
         }
+
         console.log(this.state)
-        console.log(localStorage.getItem('token'))
+        console.log("local storage token: " + localStorage.getItem('token'))
+        this.updateAuth = this.updateAuth.bind(this)
+        this.getUser = this.getUser.bind(this)
     }
 
     componentDidMount() {
         this.getUser()
     }
 
-    updateAuth(updatedState, username) {
+    updateAuth(newIsAuth, username) {
+        console.log(`updating auth to iA: ${newIsAuth} user: ${username}`)
         this.setState({
-            isAuthenticated: updatedState,
-            username: username
+            isAuthenticated: newIsAuth,
+            username: newIsAuth ? username : ''
         });
+
+        if (!newIsAuth) {
+            localStorage.removeItem('token');
+        }
     }
 
     getUser() {
@@ -43,6 +49,7 @@ class App extends Component {
             return;
         }
 
+        console.log("requesting user")
         let url = `${this.state.url}auth/user/`
         axios.get(url, {
             headers: {
@@ -50,12 +57,14 @@ class App extends Component {
             }
         })
             .then((response) => {
+                console.log("user request response recieved")
                 console.log(response);
                 this.updateAuth(true, response.data.username);
             })
-            .catch(function (error) {
-                // handle error
-                console.log(error);
+            .catch((e) => {
+                console.log("user request failed, updating state to not authorized");
+                console.log(e);
+                this.updateAuth(false, '');
             })
             .then(function () {
                 // always executed
@@ -84,7 +93,7 @@ class App extends Component {
                     {/* Route to user data */}
                     <Route
                         path="/me"
-                        render={props => <UserView {...props} url={this.state.url} isAuthenticated={this.state.isAuthenticated} />}
+                        render={props => <UserView {...props} url={this.state.url} isAuthenticated={this.state.isAuthenticated} authHandle={this.updateAuth} />}
                     />
 
                     {/* The route to the department search */}

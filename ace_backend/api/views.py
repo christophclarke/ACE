@@ -1,4 +1,4 @@
-from django.contrib.auth.models import User, Group
+from django.contrib.auth.models import Group
 from courses.models import Department, Course, Section
 from django.shortcuts import get_object_or_404
 from knox.models import AuthToken
@@ -6,6 +6,7 @@ from rest_framework import viewsets, generics, permissions
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from . import serializers
+from users.models import AceUser
 
 
 class MultipleFieldLookupMixin(object):
@@ -29,7 +30,7 @@ class UserViewSet(viewsets.ModelViewSet):
     """
     API endpoint that allows users to be viewed or edited.
     """
-    queryset = User.objects.all().order_by('-date_joined')
+    queryset = AceUser.objects.all().order_by('-date_joined')
     serializer_class = serializers.UserSerializer
 
 

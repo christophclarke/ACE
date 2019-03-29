@@ -25,4 +25,5 @@ urlpatterns = [
     re_path("^auth/register/$", views.RegistrationAPI.as_view()),
     re_path("^auth/login/$", views.LoginAPI.as_view()),
     re_path("^auth/user/$", views.UserAPI.as_view()),
+    path('users/', include('users.urls')),
 ]
