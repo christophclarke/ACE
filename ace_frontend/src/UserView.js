@@ -2,20 +2,20 @@ import React from 'react'
 import { Redirect } from 'react-router-dom'
 import { Button } from 'react-bootstrap';
 
-const axios = require('axios')
+const axios = require('axios');
 
 class UserView extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             userData: {}
-        }
+        };
         this.logout = this.logout.bind(this);
     }
 
     componentDidMount() {
         // Retrieve user data
-        const url = `${this.props.url}/auth/user/`
+        const url = `${this.props.url}/auth/user/`;
         axios.get(url, {
             headers: {
                 "authorization": "Token " + localStorage.getItem('token')
@@ -37,7 +37,7 @@ class UserView extends React.Component {
     }
 
     logout() {
-        const url = `${this.props.url}auth/logout/`
+        const url = `${this.props.url}auth/logout/`;
         console.log("logging out on " + url);
         axios.post(url, {}, {
             headers: {
@@ -45,14 +45,14 @@ class UserView extends React.Component {
             }
         })
             .then((response) => {
-                console.log("logout success")
-                console.log(response)
-                console.log("removing token from localstorage")
-                localStorage.removeItem('token')
+                console.log("logout success");
+                console.log(response);
+                console.log("removing token from localstorage");
+                localStorage.removeItem('token');
                 this.props.authHandle(false, '')
             })
             .catch((function (error) {
-                console.log("error logging out")
+                console.log("error logging out");
                 console.log(error.response)
             }))
     }
@@ -60,7 +60,7 @@ class UserView extends React.Component {
     render() {
 
         if (!this.props.isAuthenticated) {
-            console.log("User cannot access user data -> not logged in")
+            console.log("User cannot access user data -> not logged in");
             return <Redirect to="/login" />
         }
 

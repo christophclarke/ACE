@@ -8,19 +8,19 @@ import Login from './Login'
 import Register from './Register'
 import { Route, Switch } from "react-router-dom";
 
-const axios = require('axios')
+const axios = require('axios');
 class App extends Component {
     constructor(props) {
-        super(props)
+        super(props);
         this.state = {
             url: "/api/",
             isAuthenticated: localStorage.getItem('token') ? true : false,
             username: ''
-        }
+        };
 
-        console.log(this.state)
-        console.log("local storage token: " + localStorage.getItem('token'))
-        this.updateAuth = this.updateAuth.bind(this)
+        console.log(this.state);
+        console.log("local storage token: " + localStorage.getItem('token'));
+        this.updateAuth = this.updateAuth.bind(this);
         this.getUser = this.getUser.bind(this)
     }
 
@@ -29,7 +29,7 @@ class App extends Component {
     }
 
     updateAuth(newIsAuth, username) {
-        console.log(`updating auth to iA: ${newIsAuth} user: ${username}`)
+        console.log(`updating auth to iA: ${newIsAuth} user: ${username}`);
         this.setState({
             isAuthenticated: newIsAuth,
             username: newIsAuth ? username : ''
@@ -42,22 +42,22 @@ class App extends Component {
 
     getUser() {
         if (!this.state.isAuthenticated) {
-            console.log("Not Authed")
+            console.log("Not Authed");
             this.setState({
                 username: ''
             });
             return;
         }
 
-        console.log("requesting user")
-        let url = `${this.state.url}auth/user/`
+        console.log("requesting user");
+        let url = `${this.state.url}auth/user/`;
         axios.get(url, {
             headers: {
                 "authorization": "Token " + localStorage.getItem('token')
             }
         })
             .then((response) => {
-                console.log("user request response recieved")
+                console.log("user request response recieved");
                 console.log(response);
                 this.updateAuth(true, response.data.username);
             })

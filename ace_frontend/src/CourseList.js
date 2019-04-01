@@ -19,20 +19,20 @@ class CourseList extends Component {
     }
 
     componentDidMount() {
-        const url = this.props.url + "/departments/" + this.props.department + "/courses/"
+        const url = this.props.url + "/departments/" + this.props.department + "/courses/";
 
         axios.get(url)
             .then((response) => {
-                const data = response.data
+                const data = response.data;
                 this.setState({
                     data: data
-                })
+                });
                 console.log(response);
                 console.log(this.state.data)
             })
             .catch(function (error) {
                 // handle error
-                console.log("Requested: " + url)
+                console.log("Requested: " + url);
                 console.log(error);
             })
             .then(function () {
@@ -52,7 +52,7 @@ class CourseList extends Component {
                 return `${course['department']} ${course['course_number']}`.toUpperCase().includes(this.state.search.toUpperCase())
                 || course['course_title'].toUpperCase().includes(this.state.search.toUpperCase())
             }
-        )
+        );
 
         const result = filteredData.map((entry, index) => {
             return <CourseCard

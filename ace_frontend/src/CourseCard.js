@@ -13,21 +13,21 @@ class CourseCard extends Component {
             isExpanded: false,
             data: this.props.data,
             sections: []
-        }
+        };
         this.handleClick = this.handleClick.bind(this)
     }
 
     componentDidMount() {
-        const url = `${this.props.url}/departments/${this.props.department}/courses/${this.props.data['course_number']}/sections/`
+        const url = `${this.props.url}/departments/${this.props.department}/courses/${this.props.data['course_number']}/sections/`;
         axios.get(url)
             .then((response) => {
-                const data = response.data
+                const data = response.data;
                 data.sort((a, b) => {
                     return a['section_number'] - b['section_number'];
-                })
+                });
                 this.setState({
                     sections: data
-                })
+                });
                 console.log(this.state.data)
             })
             .catch(function (error) {
@@ -49,8 +49,8 @@ class CourseCard extends Component {
 
     render() {
         const info = this.state.sections.map((entry, index) => {
-            var begin = new Date('1970-01-01T' + entry['time_begin'] + 'Z')
-            var end = new Date('1970-01-01T' + entry['time_end'] + 'Z')
+            var begin = new Date('1970-01-01T' + entry['time_begin'] + 'Z');
+            var end = new Date('1970-01-01T' + entry['time_end'] + 'Z');
             return (
                 <li key={entry['section_number']}>
                     {`${entry['section_number']} | ${entry['instructor']} \xa0\xa0\xa0\xa0`}

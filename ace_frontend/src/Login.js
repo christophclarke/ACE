@@ -14,7 +14,7 @@ class Login extends React.Component {
 
     onSubmit = e => {
         e.preventDefault();
-        const url = `${this.props.url}auth/login/`
+        const url = `${this.props.url}auth/login/`;
         axios.post(url, {
             "username" : this.state.username,
             "password" : this.state.password
@@ -35,11 +35,11 @@ class Login extends React.Component {
             .then(function () {
                 // always executed
             });
-    }
+    };
 
     render() {
         if (this.props.isAuthenticated) {
-            console.log("already logged in")
+            console.log("already logged in");
             return <Redirect to="/" />
         }
         return (

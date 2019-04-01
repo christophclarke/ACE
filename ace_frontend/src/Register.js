@@ -1,7 +1,7 @@
 import React from 'react'
 import {Link, Redirect} from 'react-router-dom'
 
-const axios = require('axios')
+const axios = require('axios');
 
 class Register extends React.Component {
 
@@ -15,7 +15,7 @@ class Register extends React.Component {
 
     onSubmit = e => {
         e.preventDefault();
-        const url = `${this.props.url}auth/register/`
+        const url = `${this.props.url}auth/register/`;
         axios.post(url, {
             "username" : this.state.username,
             "password" : this.state.password
@@ -33,7 +33,7 @@ class Register extends React.Component {
             .then(function () {
                 // always executed
             });
-    }
+    };
 
     render() {
         if (this.props.isAuthenticated) {

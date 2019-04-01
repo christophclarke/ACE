@@ -14,18 +14,18 @@ class DepartmentCard extends Component {
             isExpanded: false,
             data: this.props.data,
             courses: []
-        }
+        };
         this.handleClick = this.handleClick.bind(this)
     }
 
     componentDidMount() {
-        const url = `${this.state.apiUrl}/departments/${this.state.data['abbreviation']}/courses`
+        const url = `${this.state.apiUrl}/departments/${this.state.data['abbreviation']}/courses`;
         axios.get(url)
             .then((response) => {
-                const data = response.data
+                const data = response.data;
                 this.setState({
                     courses: data
-                })
+                });
                 console.log(response);
                 console.log(this.state.data)
             })

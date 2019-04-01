@@ -98,6 +98,16 @@ class SectionViewSet(viewsets.ViewSet):
         return Response(serializer.data)
 
 
+class DirectSectionViewSet(viewsets.ViewSet):
+    serializer_class = serializers.SectionSerializer
+
+    def retrieve(self, request, pk=None):
+        queryset = Section.objects.filter(pk=pk)
+        section = get_object_or_404(queryset)
+        serializer = serializers.SectionSerializer(section)
+        return Response(serializer.data)
+
+
 class RegistrationAPI(generics.GenericAPIView):
     serializer_class = serializers.CreateUserSerializer
 

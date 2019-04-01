@@ -2,6 +2,7 @@ from django.contrib.auth import authenticate
 from django.contrib.auth.models import Group
 from courses.models import Department, Course, Section
 from rest_framework import serializers
+from rest_framework.relations import HyperlinkedIdentityField
 from rest_framework_nested.relations import NestedHyperlinkedRelatedField
 from users.models import AceUser
 
@@ -41,10 +42,39 @@ class CreateUserSerializer(serializers.ModelSerializer):
         return user
 
 
+class SectionSerializer(serializers.ModelSerializer):
+    instructor = serializers.SlugRelatedField(read_only=True,
+                                              slug_field='name')
+    course = serializers.StringRelatedField()
+
+    class Meta:
+        model = Section
+        fields = ("available_seats",
+                  "enrolled_students",
+                  "section_type",
+                  "section_number",
+                  "time_begin",
+                  "time_end",
+                  "monday",
+                  "tuesday",
+                  "wednesday",
+                  "thursday",
+                  "friday",
+                  "saturday",
+                  "room",
+                  "special_enrollment",
+                  "additional_info",
+                  "course",
+                  "instructor",
+                  "lab_section")
+
+
 class UserSerializer(serializers.ModelSerializer):
+    sections = SectionSerializer(many=True)
+
     class Meta:
         model = AceUser
-        fields = ('id', 'username')
+        fields = ('id', 'username', 'sections')
 
 
 class DepartmentSerializer(serializers.ModelSerializer):
@@ -75,28 +105,5 @@ class CourseSerializer(serializers.ModelSerializer):
     # )
 
 
-class SectionSerializer(serializers.ModelSerializer):
-    instructor = serializers.SlugRelatedField(read_only=True,
-                                              slug_field='name')
-    course = serializers.StringRelatedField()
-
-    class Meta:
-        model = Section
-        fields = ("available_seats",
-                  "enrolled_students",
-                  "section_type",
-                  "section_number",
-                  "time_begin",
-                  "time_end",
-                  "monday",
-                  "tuesday",
-                  "wednesday",
-                  "thursday",
-                  "friday",
-                  "saturday",
-                  "room",
-                  "special_enrollment",
-                  "additional_info",
-                  "course",
-                  "instructor",
-                  "lab_section")
+class DirectSectionSerializer(serializers.ModelSerializer):
+    pass

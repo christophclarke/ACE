@@ -6,7 +6,7 @@ const axios = require('axios');
 
 class DepartmentDescription extends Component {
     constructor(props) {
-        super(props)
+        super(props);
         this.state = {
             departmentData: {},
             courses: []
@@ -20,7 +20,7 @@ class DepartmentDescription extends Component {
                 const data = response.data;
                 this.setState({
                     departmentData: data
-                })
+                });
                 console.log(response);
                 console.log(this.state.data)
             })
@@ -35,10 +35,10 @@ class DepartmentDescription extends Component {
         const coursesUrl = `${departmentUrl}/courses`;
         axios.get(coursesUrl)
             .then((response) => {
-                const data = response.data
+                const data = response.data;
                 this.setState({
                     courses: data
-                })
+                });
                 console.log(response);
                 console.log(this.state.data)
             })
