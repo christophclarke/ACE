@@ -23,7 +23,7 @@ class Login extends React.Component {
                 console.log(response);
                 localStorage.setItem("token", response.data.token);
                 console.log("Local Token " + localStorage.getItem("token"));
-                this.props.authHandle(true, response.data.user.username);
+                this.props.authHandle(true, response.data.user);
             })
             .catch(function (error) {
                 // handle error

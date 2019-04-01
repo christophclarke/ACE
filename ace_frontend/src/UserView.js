@@ -1,40 +1,28 @@
 import React from 'react'
 import { Redirect } from 'react-router-dom'
-import { Button } from 'react-bootstrap';
+import { Button, Container, Row, Col } from 'react-bootstrap';
+import UserInfo from "./UserInfo";
+import UserCalendar from "./UserCalendar";
 
 const axios = require('axios');
+
+const AppDataContext = new React.createContext();
 
 class UserView extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-            userData: {}
-        };
+        // this.state = {
+        //     userData: {}
+        // };
         this.logout = this.logout.bind(this);
     }
 
-    componentDidMount() {
-        // Retrieve user data
-        const url = `${this.props.url}/auth/user/`;
-        axios.get(url, {
-            headers: {
-                "authorization": "Token " + localStorage.getItem('token')
-            }
-        })
-            .then((response) => {
-                console.log(response);
-                this.setState({
-                    userData: response.data
-                })
-            })
-            .catch(function (error) {
-                // handle error
-                console.log(error);
-            })
-            .then(function () {
-                // always executed
-            });
-    }
+    // componentDidMount() {
+    //     // Retrieve user data
+    //     this.setState({
+    //         userData: this.props.userData
+    //     })
+    // }
 
     logout() {
         const url = `${this.props.url}auth/logout/`;
@@ -49,7 +37,7 @@ class UserView extends React.Component {
                 console.log(response);
                 console.log("removing token from localstorage");
                 localStorage.removeItem('token');
-                this.props.authHandle(false, '')
+                this.props.authHandle(false, {})
             })
             .catch((function (error) {
                 console.log("error logging out");
@@ -65,10 +53,19 @@ class UserView extends React.Component {
         }
 
         return (
-            <div>
-                {JSON.stringify(this.state.userData)}
+            <Container>
+                <Row>
+                    <Col lg={8}>
+                        <UserInfo username={this.props.userData.username} />
+                    </Col>
+                </Row>
+                <Row>
+                    <Col sm={10}>
+                        <UserCalendar sections={this.props.userData.sections}/>
+                    </Col>
+                </Row>
                 <Button onClick={this.logout}>Logout</Button>
-            </div>
+            </Container>
         )
     }
 }

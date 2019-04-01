@@ -49,29 +49,29 @@ class SectionSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Section
-        fields = ("available_seats",
-                  "enrolled_students",
-                  "section_type",
-                  "section_number",
-                  "time_begin",
-                  "time_end",
-                  "monday",
-                  "tuesday",
-                  "wednesday",
-                  "thursday",
-                  "friday",
-                  "saturday",
-                  "room",
-                  "special_enrollment",
-                  "additional_info",
-                  "course",
-                  "instructor",
-                  "lab_section")
+        # fields = ("available_seats",
+        #           "enrolled_students",
+        #           "section_type",
+        #           "section_number",
+        #           "time_begin",
+        #           "time_end",
+        #           "monday",
+        #           "tuesday",
+        #           "wednesday",
+        #           "thursday",
+        #           "friday",
+        #           "saturday",
+        #           "room",
+        #           "special_enrollment",
+        #           "additional_info",
+        #           "course",
+        #           "instructor",
+        #           "lab_section")
+        fields = "__all__"
 
 
 class UserSerializer(serializers.ModelSerializer):
-    sections = SectionSerializer(many=True)
-
+    # sections = SectionSerializer(many=True)
     class Meta:
         model = AceUser
         fields = ('id', 'username', 'sections')

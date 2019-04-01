@@ -56,7 +56,7 @@ class DepartmentCard extends Component {
         });
 
         return (
-            <Card>
+            <Card className={"shadowed-hover"}>
                 <Card.Body>
                     <Card.Title>
                         <Link to={"/search/" + this.props.data['abbreviation']}>
