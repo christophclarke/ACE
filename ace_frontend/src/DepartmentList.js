@@ -17,14 +17,14 @@ class DepartmentList extends Component {
     }
 
     componentDidMount() {
-        const url = this.props.url + "departments/"
+        const url = this.props.url + "departments/";
 
         axios.get(url)
             .then((response) => {
-                const data = response.data
+                const data = response.data;
                 this.setState({
                     data: data
-                })
+                });
                 console.log(response);
                 console.log(this.state.data)
             })
@@ -49,7 +49,7 @@ class DepartmentList extends Component {
                 return department['full_name'].toUpperCase().includes(this.state.search.toUpperCase())
                 || department['abbreviation'].toUpperCase().includes(this.state.search.toUpperCase())
             }
-        )
+        );
 
         const result = filteredData.map((entry, index) => {
             return <DepartmentCard

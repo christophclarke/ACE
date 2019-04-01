@@ -41,7 +41,10 @@ INSTALLED_APPS = [
     'rest_framework',
     'knox',
     'corsheaders',
+    'users.apps.UsersConfig',
 ]
+
+AUTH_USER_MODEL = 'users.AceUser'
 
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',

@@ -2,20 +2,22 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f39f4c01-0227-48ce-a39b-aae8cdf4b157" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/ace/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/ace/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ace/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/ace/urls.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ace_frontend/src/SectionCard.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ace_frontend/src/UserCalendar.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ace_frontend/src/UserInfo.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/api/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/api/serializers.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/api/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/api/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/api/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db_refresh.py" beforeDir="false" afterPath="$PROJECT_DIR$/db_refresh.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ace_frontend/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../ace_frontend/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../ace_frontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ace_frontend/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../ace_frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ace_frontend/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ace_frontend/public/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ace_frontend/public/manifest.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ace_frontend/src/AceNav.js" beforeDir="false" afterPath="$PROJECT_DIR$/../ace_frontend/src/AceNav.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../ace_frontend/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/../ace_frontend/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ace_frontend/src/CourseDescription.js" beforeDir="false" afterPath="$PROJECT_DIR$/../ace_frontend/src/CourseDescription.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../ace_frontend/src/DepartmentCard.js" beforeDir="false" afterPath="$PROJECT_DIR$/../ace_frontend/src/DepartmentCard.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ace_frontend/src/Home.js" beforeDir="false" afterPath="$PROJECT_DIR$/../ace_frontend/src/Home.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ace_frontend/src/DepartmentDescription.js" beforeDir="false" afterPath="$PROJECT_DIR$/../ace_frontend/src/DepartmentDescription.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ace_frontend/src/Login.js" beforeDir="false" afterPath="$PROJECT_DIR$/../ace_frontend/src/Login.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ace_frontend/src/Register.js" beforeDir="false" afterPath="$PROJECT_DIR$/../ace_frontend/src/Register.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ace_frontend/src/UserView.js" beforeDir="false" afterPath="$PROJECT_DIR$/../ace_frontend/src/UserView.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../ace_frontend/src/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/../ace_frontend/src/index.css" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -51,6 +53,13 @@
         <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
         <item name="main: schema" type="981a47c2:SqliteImplModel$Schema" />
       </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="db.sqlite3" type="feb32156:DbDataSourceImpl" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="main: schema" type="981a47c2:SqliteImplModel$Schema" />
+        <item name="courses_section: table" type="3d80ac25:SqliteImplModel$Table" />
+      </path>
     </expand>
     <select />
   </component>
@@ -60,31 +69,22 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ace/settings.py">
+        <entry file="file://$PROJECT_DIR$/users/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1341">
-              <caret line="41" column="11" selection-start-line="41" selection-start-column="11" selection-end-line="41" selection-end-column="11" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ace/urls.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="184">
-              <caret line="8" column="35" selection-start-line="8" selection-start-column="35" selection-end-line="8" selection-end-column="35" />
+            <state relative-caret-position="161">
+              <caret line="7" selection-start-line="7" selection-end-line="7" />
               <folding>
-                <element signature="e#0#37#0" expanded="true" />
+                <element signature="e#0#51#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/api/serializers.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="387">
-              <caret line="23" column="20" selection-start-line="23" selection-start-column="20" selection-end-line="23" selection-end-column="20" />
+            <state relative-caret-position="-412">
+              <caret line="73" column="45" selection-start-line="73" selection-start-column="45" selection-end-line="73" selection-end-column="45" />
               <folding>
                 <element signature="e#0#44#0" expanded="true" />
               </folding>
@@ -93,12 +93,11 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/api/views.py">
+        <entry file="file://$PROJECT_DIR$/courses/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="492">
-              <caret line="81" selection-start-line="81" selection-end-line="81" />
+            <state>
               <folding>
-                <element signature="e#0#50#0" expanded="true" />
+                <element signature="e#0#28#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -107,8 +106,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/api/urls.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="468">
-              <caret line="25" column="39" selection-start-line="25" selection-start-column="39" selection-end-line="25" selection-end-column="39" />
+            <state relative-caret-position="211">
+              <caret line="21" selection-start-line="21" selection-end-line="21" />
               <folding>
                 <element signature="e#0#46#0" expanded="true" />
               </folding>
@@ -116,7 +115,26 @@
           </provider>
         </entry>
       </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/api/views.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="766">
+              <caret line="140" selection-start-line="140" selection-end-line="140" />
+              <folding>
+                <element signature="e#0#44#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
     </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
@@ -125,11 +143,18 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/db_refresh.py" />
+        <option value="$PROJECT_DIR$/ace/urls.py" />
         <option value="$PROJECT_DIR$/ace/settings.py" />
+        <option value="$PROJECT_DIR$/users/forms.py" />
+        <option value="$PROJECT_DIR$/users/admin.py" />
+        <option value="$PROJECT_DIR$/setup.py" />
+        <option value="$PROJECT_DIR$/users/serializers.py" />
+        <option value="$PROJECT_DIR$/users/views.py" />
+        <option value="$PROJECT_DIR$/users/urls.py" />
+        <option value="$PROJECT_DIR$/users/models.py" />
+        <option value="$PROJECT_DIR$/api/urls.py" />
         <option value="$PROJECT_DIR$/api/serializers.py" />
         <option value="$PROJECT_DIR$/api/views.py" />
-        <option value="$PROJECT_DIR$/api/urls.py" />
-        <option value="$PROJECT_DIR$/ace/urls.py" />
       </list>
     </option>
   </component>
@@ -161,6 +186,16 @@
               <item name="ace_backend" type="462c0819:PsiDirectoryNode" />
               <item name="api" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="ace_backend" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ace_backend" type="462c0819:PsiDirectoryNode" />
+              <item name="courses" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ace_backend" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ace_backend" type="462c0819:PsiDirectoryNode" />
+              <item name="users" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -170,6 +205,7 @@
   <component name="PropertiesComponent">
     <property name="DatabaseDriversLRU" value="sqlite" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="database.console.LAST_STATE" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -224,21 +260,24 @@
       <updated>1553372936202</updated>
       <workItem from="1553372939278" duration="4534000" />
       <workItem from="1553668536573" duration="1259000" />
+      <workItem from="1553673022541" duration="216000" />
+      <workItem from="1553839142823" duration="7055000" />
+      <workItem from="1554101499880" duration="2071000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="5793000" />
+    <option name="totallyTimeSpent" value="15135000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25274727" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.26190478" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32987553" />
       <window_info anchor="bottom" id="Run" order="2" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
@@ -248,13 +287,14 @@
       <window_info anchor="bottom" id="Version Control" order="8" />
       <window_info anchor="bottom" id="Database Changes" order="9" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="11" visible="true" weight="0.32987553" />
+      <window_info anchor="bottom" id="Terminal" order="11" visible="true" weight="0.36307055" />
       <window_info anchor="bottom" id="Python Console" order="12" />
+      <window_info anchor="bottom" id="Database Console" order="13" weight="0.32987553" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="right" id="SciView" order="3" weight="0.32967034" />
-      <window_info anchor="right" id="Database" order="4" weight="0.32967034" />
+      <window_info anchor="right" id="Database" order="4" weight="0.18131869" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -286,29 +326,80 @@
     <entry file="file://$PROJECT_DIR$/ace/wsgi.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/api/views.py">
+    <entry file="file://$PROJECT_DIR$/users/apps.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/users/forms.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="492">
-          <caret line="81" selection-start-line="81" selection-end-line="81" />
+        <state relative-caret-position="345">
+          <caret line="15" column="23" lean-forward="true" selection-start-line="15" selection-start-column="23" selection-end-line="15" selection-end-column="23" />
           <folding>
-            <element signature="e#0#50#0" expanded="true" />
+            <element signature="e#0#24#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ace/settings.py">
+    <entry file="file://$PROJECT_DIR$/courses/admin.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1341">
-          <caret line="41" column="11" selection-start-line="41" selection-start-column="11" selection-end-line="41" selection-end-column="11" />
+        <state>
+          <folding>
+            <element signature="e#0#32#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/api/urls.py">
+    <entry file="file://$PROJECT_DIR$/courses/apps.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/users/admin.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="468">
-          <caret line="25" column="39" selection-start-line="25" selection-start-column="39" selection-end-line="25" selection-end-column="39" />
+        <state relative-caret-position="276">
+          <caret line="12" lean-forward="true" selection-start-line="12" selection-end-line="12" />
           <folding>
-            <element signature="e#0#46#0" expanded="true" />
+            <element signature="e#0#32#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/requirements.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/setup.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret selection-start-column="2" selection-end-line="2" selection-end-column="68" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/apps.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/users/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="115">
+          <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
+          <folding>
+            <element signature="e#0#35#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/admin.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ace/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="288">
+          <caret line="43" column="29" lean-forward="true" selection-start-line="43" selection-start-column="29" selection-end-line="43" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/users/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="138">
+          <caret line="6" column="1" selection-start-line="6" selection-start-column="1" selection-end-line="6" selection-end-column="1" />
+          <folding>
+            <element signature="e#0#37#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -323,10 +414,99 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/users/serializers.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="184">
+          <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
+          <folding>
+            <element signature="e#0#38#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/models.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="das://e811bb3b-6b4a-427f-b23f-66aae184993e/schema/main/table/users_aceuser">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://e811bb3b-6b4a-427f-b23f-66aae184993e/schema/main/table/courses_course">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/courses/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="e#0#28#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://e811bb3b-6b4a-427f-b23f-66aae184993e/schema/main/table/users_aceuser_courses">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://e811bb3b-6b4a-427f-b23f-66aae184993e/schema/main/table/users_aceuser_sections">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/users/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="161">
+          <caret line="7" selection-start-line="7" selection-end-line="7" />
+          <folding>
+            <element signature="e#0#51#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/courses/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="e#0#28#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/api/serializers.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="387">
-          <caret line="23" column="20" selection-start-line="23" selection-start-column="20" selection-end-line="23" selection-end-column="20" />
+        <state relative-caret-position="-412">
+          <caret line="73" column="45" selection-start-line="73" selection-start-column="45" selection-end-line="73" selection-end-column="45" />
+          <folding>
+            <element signature="e#0#44#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="211">
+          <caret line="21" selection-start-line="21" selection-end-line="21" />
+          <folding>
+            <element signature="e#0#46#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="766">
+          <caret line="140" selection-start-line="140" selection-end-line="140" />
           <folding>
             <element signature="e#0#44#0" expanded="true" />
           </folding>

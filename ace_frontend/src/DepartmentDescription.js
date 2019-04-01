@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 import CourseList from './CourseList';
-
-const axios = require('axios');
+import CourseDescription from "./CourseDescription";
+import axios from 'axios';
 
 class DepartmentDescription extends Component {
     constructor(props) {
-        super(props)
+        super(props);
         this.state = {
             departmentData: {},
             courses: []
@@ -20,7 +20,7 @@ class DepartmentDescription extends Component {
                 const data = response.data;
                 this.setState({
                     departmentData: data
-                })
+                });
                 console.log(response);
                 console.log(this.state.data)
             })
@@ -35,10 +35,10 @@ class DepartmentDescription extends Component {
         const coursesUrl = `${departmentUrl}/courses`;
         axios.get(coursesUrl)
             .then((response) => {
-                const data = response.data
+                const data = response.data;
                 this.setState({
                     courses: data
-                })
+                });
                 console.log(response);
                 console.log(this.state.data)
             })
@@ -67,7 +67,13 @@ class DepartmentDescription extends Component {
                 <Route exact path={this.props.match.url + "/"} render={(props)=> (
                     <CourseList url={this.props.url} department={this.props.department}/>
                 )}/>
-                <Route path={this.props.match.url + "/:course"} render={(props) => <p>{props.match.params.course}</p>} />
+                <Route path={this.props.match.url + "/:course"} render={(props) =>
+                    <CourseDescription
+                        url={this.props.url}
+                        department={this.props.department}
+                        course={props.match.params.course}
+                        handleSectionAdd={(sectionId) => this.props.handleSectionAdd(sectionId)}
+                    />} />
             </div>
         )
     }
