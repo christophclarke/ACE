@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Card} from 'react-bootstrap';
+import {Button, Card, OverlayTrigger, Popover} from 'react-bootstrap';
 import moment from "moment";
 
 const style = {
@@ -78,6 +78,30 @@ function getClassBlockStyle(col, start, end) {
     }
 }
 
+function CalendarItem(props) {
+    const {sectionData} = props;
+
+    const popover = (
+        <Popover id="popover-basic" title={`${sectionData["course"]} | ${sectionData["section_number"]}`}>
+            <p>Professor: {sectionData["instructor"]}</p>
+            <p>Enrolled Students: {sectionData["enrolled_students"]}</p>
+            <p>Available Seats: {sectionData["available_seats"]}</p>
+            <p>Room: {sectionData["room"]}</p>
+            <p>Special Enrollment Info: {sectionData["special_enrollment"] ? sectionData["special_enrollment"] : "N/A"}</p>
+            <p>Additional Info: {sectionData["additional_info"] ? sectionData["additional_info"] : "N/A"}</p>
+            <Button onClick={() => props.handleDelete(sectionData["id"])}>
+                Remove This Section
+            </Button>
+        </Popover>
+    );
+
+    return (
+        <OverlayTrigger trigger="focus" placement="right" overlay={popover}>
+            <div style={props.style} tabIndex={-1}>{sectionData["course"]}</div>
+        </OverlayTrigger>
+    )
+}
+
 
 class UserCalendar extends Component {
     render() {
@@ -91,10 +115,11 @@ class UserCalendar extends Component {
 
         let classDivs;
         if (this.props.sections) {
-            classDivs = this.props.sections.map((value, index) => {
-                const days = [value.monday, value.tuesday, value.wednesday, value.thursday, value.friday, value.saturday];
-                // if (value.time_begin == null) return null;
-                const start = moment(value.time_begin, 'HH:mm:ss');
+            classDivs = this.props.sections.map((sectionData, index) => {
+                const {monday, friday, thursday, wednesday, tuesday, saturday, time_begin, time_end} = sectionData;
+                const days = [monday, tuesday, wednesday, thursday, friday, saturday];
+                if (sectionData.id == null) window.location.reload();
+                const start = moment(time_begin, 'HH:mm:ss');
                 const startNorm = start.clone().subtract(7, 'hours');
                 console.log(start.hour());
                 console.log(startNorm.hour());
@@ -103,8 +128,8 @@ class UserCalendar extends Component {
                     startRow += 1;
                 }
 
-                // if (value.time_end == null) return null;
-                const end = moment(value.time_end, 'HH:mm:ss');
+                // if (sectionData.time_end == null) return null;
+                const end = moment(time_end, 'HH:mm:ss');
                 const endNorm = end.clone().subtract(7, 'hours');
                 let endRow = endNorm.hour() * 2;
                 if (startNorm.minute() !== 50) {
@@ -113,7 +138,12 @@ class UserCalendar extends Component {
 
                 return days.map((onDay, index) => {
                     if (!onDay) return null;
-                    return <div key={index} style={getClassBlockStyle(index + 2, startRow + 1, endRow + 1)}>{value.course}</div>
+                    const {course} = sectionData;
+                    return <CalendarItem key={index}
+                                         style={getClassBlockStyle(index + 2, startRow + 1, endRow + 1)}
+                                         sectionData={sectionData}
+                                         handleDelete={(sectionId) => this.props.handleDelete(sectionId)}
+                    />
                 });
             });
         }

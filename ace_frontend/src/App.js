@@ -23,6 +23,8 @@ class App extends Component {
         this.updateAuth = this.updateAuth.bind(this);
         this.getUser = this.getUser.bind(this);
         this.addSection = this.addSection.bind(this);
+        this.deleteSection = this.deleteSection.bind(this);
+        this.logout = this.logout.bind(this);
     }
 
     componentDidMount() {
@@ -89,7 +91,29 @@ class App extends Component {
             });
     }
 
+    logout() {
+        const url = `${this.state.url}auth/logout/`;
+        console.log("logging out on " + url);
+        axios.post(url, {}, {
+            headers: {
+                "Authorization": "Token " + localStorage.getItem('token')
+            }
+        })
+            .then((response) => {
+                console.log("logout success");
+                console.log(response);
+                console.log("removing token from localstorage");
+                localStorage.removeItem('token');
+                this.updateAuth(false, {})
+            })
+            .catch((function (error) {
+                console.log("error logging out");
+                console.log(error.response)
+            }))
+    }
+
     addSection(sectionNumber) {
+        console.log("adding " + sectionNumber);
         const userUrl = `${this.state.url}users/${this.state.userData.id}/`;
         if (!this.state.userData) return;
         let sectionNums = this.state.userData.sections.map((value, index) => {
@@ -108,6 +132,35 @@ class App extends Component {
             console.log("Successfully patched user data");
             console.log(response);
             this.getUser()
+        }).catch((error) => {
+            console.log("Error while adding section");
+            console.log(error.response)
+        })
+    }
+
+    deleteSection(sectionNumber) {
+        console.log("deleting" + sectionNumber);
+        const userUrl = `${this.state.url}users/${this.state.userData.id}/`;
+        if (!this.state.userData) return;
+        let sectionNums = this.state.userData.sections.map((value, index) => {
+            return value.id;
+        });
+        console.log(sectionNums);
+        sectionNums = sectionNums.filter(e => e !== sectionNumber);
+        console.log(sectionNumber);
+        axios.patch(userUrl, {
+            "sections": sectionNums
+        }, {
+            headers: {
+                "authorization": "Token " + localStorage.getItem('token')
+            }
+        }).then((response) => {
+            console.log("Successfully patched user data");
+            console.log(response);
+            this.getUser()
+        }).catch((error) => {
+            console.log("Error while deleting section");
+            console.log(error.response)
         })
     }
 
@@ -138,6 +191,8 @@ class App extends Component {
                                                    isAuthenticated={this.state.isAuthenticated}
                                                    authHandle={this.updateAuth}
                                                    userData={this.state.userData}
+                                                   handleDelete={(sectionId) => this.deleteSection(sectionId)}
+                                                   handleLogout={this.logout}
                                          />}
                     />
 
