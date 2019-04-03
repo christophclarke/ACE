@@ -3,6 +3,7 @@ from django.contrib.auth.models import Group
 from courses.models import Department, Course, Section
 from rest_framework import serializers
 from rest_framework.relations import HyperlinkedIdentityField
+from rest_framework.serializers import ListSerializer
 from rest_framework_nested.relations import NestedHyperlinkedRelatedField
 from users.models import AceUser
 
@@ -71,7 +72,8 @@ class SectionSerializer(serializers.ModelSerializer):
 
 
 class UserSerializer(serializers.ModelSerializer):
-    # sections = SectionSerializer(many=True)
+    sections = serializers.PrimaryKeyRelatedField(queryset=Section.objects.all(), many=True)
+
     class Meta:
         model = AceUser
         fields = ('id', 'username', 'sections')
