@@ -5,7 +5,7 @@ ENV PYTHONUNBUFFERED 1
 RUN mkdir -p /code/ace_backend
 WORKDIR /code/ace_backend
 
-COPY requirements.txt /code/ace_backend/
+COPY ace_backend/requirements.txt /code/ace_backend/
 
 RUN pip install -r requirements.txt
 COPY . /code/ace_backend/
