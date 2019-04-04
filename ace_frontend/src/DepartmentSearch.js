@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import DepartmentCard from './DepartmentCard'
+import {Redirect} from "react-router-dom";
 
 const axios = require('axios');
 
 
-class DepartmentList extends Component {
+class DepartmentSearch extends Component {
 
     constructor() {
         super();
@@ -44,6 +45,11 @@ class DepartmentList extends Component {
     }
 
     render() {
+        if (!this.props.isAuthenticated) {
+            console.log("User cannot access user data -> not logged in");
+            return <Redirect to="/login"/>
+        }
+
         let filteredData = this.state.data.filter(
             (department) => {
                 return department['full_name'].toUpperCase().includes(this.state.search.toUpperCase())
@@ -76,4 +82,4 @@ class DepartmentList extends Component {
     }
 }
 
-export default DepartmentList;
+export default DepartmentSearch;
