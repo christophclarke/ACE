@@ -72,6 +72,8 @@ function getSpanBlockStyle(rowStart, rowEnd, colStart, colEnd) {
 
 function getClassBlockStyle(col, start, end) {
     return {
+        textAlign: "center",
+        padding: "5px",
         gridColumn: `${col} / ${col}`,
         gridRow: `${start} / ${end}`,
         backgroundColor: 'rgba(117, 190, 218, 0.5)'
@@ -83,7 +85,7 @@ function CalendarItem(props) {
 
     const popover = (
         <Popover id="popover-basic" title={`${sectionData["course"]} | ${sectionData["section_number"]}`}>
-            <p>Professor: {sectionData["instructor"]}</p>
+            <p>Professor: {sectionData["instructor"] ? sectionData["instructor"] : "N/A"}</p>
             <p>Enrolled Students: {sectionData["enrolled_students"]}</p>
             <p>Available Seats: {sectionData["available_seats"]}</p>
             <p>Room: {sectionData["room"]}</p>
@@ -97,7 +99,7 @@ function CalendarItem(props) {
 
     return (
         <OverlayTrigger trigger="focus" placement="right" overlay={popover}>
-            <div style={props.style} tabIndex={-1}>{sectionData["course"]}</div>
+            <div style={props.style} tabIndex={-1}>{sectionData["course"]} ({sectionData['section_number']})</div>
         </OverlayTrigger>
     )
 }

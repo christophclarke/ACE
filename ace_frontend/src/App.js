@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Home from './Home'
-import DepartmentList from './DepartmentList'
+import DepartmentSearch from './DepartmentSearch'
 import DepartmentDescription from './DepartmentDescription'
 import AceNav from './AceNav'
 import UserView from './UserView'
@@ -197,7 +197,7 @@ class App extends Component {
                     />
 
                     {/* The route to the department search */}
-                    <Route exact path="/search/departments" render={props => <DepartmentList {...props} url={this.state.url} />} />
+                    <Route exact path="/search/departments" render={props => <DepartmentSearch {...props} url={this.state.url} isAuthenticated={this.state.isAuthenticated}/>} />
 
                     {/* The route to a specific course section */}
                     {/* <Route path="/:department/:course/:section" render={(props) =>
@@ -210,6 +210,8 @@ class App extends Component {
                         path="/search/:department"
                         render={props => <DepartmentDescription
                             {...props}
+                            isAuthenticated={this.state.isAuthenticated}
+                            userData={this.state.userData}
                             url={this.state.url}
                             department={props.match.params.department}
                             handleSectionAdd={(sectionId) => this.addSection(sectionId)}

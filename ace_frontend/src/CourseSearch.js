@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
-import DepartmentCard from './DepartmentCard'
+// import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
+import CourseCard from './CourseCard.js'
+// import DepartmentFull from './DepartmentFull';
 
 const axios = require('axios');
 
 
-class DepartmentList extends Component {
+class CourseSearch extends Component {
 
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
             data: [],
             search: ""
@@ -17,7 +19,7 @@ class DepartmentList extends Component {
     }
 
     componentDidMount() {
-        const url = this.props.url + "departments/";
+        const url = this.props.url + "/departments/" + this.props.department + "/courses/";
 
         axios.get(url)
             .then((response) => {
@@ -30,6 +32,7 @@ class DepartmentList extends Component {
             })
             .catch(function (error) {
                 // handle error
+                console.log("Requested: " + url);
                 console.log(error);
             })
             .then(function () {
@@ -45,15 +48,16 @@ class DepartmentList extends Component {
 
     render() {
         let filteredData = this.state.data.filter(
-            (department) => {
-                return department['full_name'].toUpperCase().includes(this.state.search.toUpperCase())
-                || department['abbreviation'].toUpperCase().includes(this.state.search.toUpperCase())
+            (course) => {
+                return `${course['department']} ${course['course_number']}`.toUpperCase().includes(this.state.search.toUpperCase())
+                || course['course_title'].toUpperCase().includes(this.state.search.toUpperCase())
             }
         );
 
         const result = filteredData.map((entry, index) => {
-            return <DepartmentCard
+            return <CourseCard
                         url={this.props.url}
+                        department={this.props.department}
                         key={index}
                         data={entry}
                     />;
@@ -61,10 +65,10 @@ class DepartmentList extends Component {
 
         return (
             <div>
-                <h1 className="search-header">Department Search</h1>
+                <h1 className="search-header">{this.props.department} Search</h1>
                 <input 
                     className="search-bar"
-                    placeholder="Computer Science"
+                    placeholder="1204"
                     type="text"
                     value={this.state.search}
                     onChange={this.handleChange}
@@ -76,4 +80,4 @@ class DepartmentList extends Component {
     }
 }
 
-export default DepartmentList;
+export default CourseSearch;
