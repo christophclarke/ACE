@@ -8,7 +8,7 @@ WORKDIR /code/ace_backend
 COPY ace_backend/requirements.txt /code/ace_backend/
 
 RUN pip install -r requirements.txt
-COPY . /code/ace_backend/
+COPY ./ace_backend /code/ace_backend/
 
 EXPOSE 8000
 STOPSIGNAL SIGINT
