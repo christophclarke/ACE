@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import axios from 'axios';
 import SectionCard from "./SectionCard";
+import {Col, Container, Row} from "react-bootstrap";
 
 class CourseDescription extends Component {
     constructor(props) {
@@ -34,7 +35,9 @@ class CourseDescription extends Component {
         axios.get(sectionsUrl)
             .then((response) => {
                 console.log(response.data);
-                const data = response.data.sort((a, b) => {return a.section_number > b.section_number});
+                const data = response.data.sort((a, b) => {
+                    return a.section_number > b.section_number
+                });
                 this.setState({
                     sections: data
                 });
@@ -55,6 +58,7 @@ class CourseDescription extends Component {
             return (
                 <SectionCard
                     key={index}
+                    userData={this.props.userData}
                     sectionData={value}
                     handleSectionAdd={(sectionId) => this.props.handleSectionAdd(sectionId)}
                 />
@@ -62,10 +66,14 @@ class CourseDescription extends Component {
         });
 
         return (
-            <div>
-                <h2>{this.props.department} {this.props.course}</h2>
-                {sections}
-            </div>
+            <Container>
+                <Row>
+                    <Col>
+                        <h2>{this.props.department} {this.props.course}</h2>
+                        {sections}
+                    </Col>
+                </Row>
+            </Container>
         )
     }
 }

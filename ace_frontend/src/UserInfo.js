@@ -1,12 +1,23 @@
 import React, {Component} from 'react';
-import {Card} from 'react-bootstrap'
+import {Button, Card, Col, Container, Row} from 'react-bootstrap'
 
 class UserInfo extends Component {
     render() {
         return (
-            <div>
-                <Card body><h2>{this.props.username}</h2></Card>
-            </div>
+            <Card>
+                <Card.Body>
+                    <Container>
+                        <Row>
+                            <Col sm={{span: 4}}>
+                                <h2>{this.props.username}</h2>
+                            </Col>
+                            <Col sm={{span: 4, offset: 8}}>
+                                <Button onClick={this.props.handleLogout}>Logout</Button>
+                            </Col>
+                        </Row>
+                    </Container>
+                </Card.Body>
+            </Card>
         );
     }
 }

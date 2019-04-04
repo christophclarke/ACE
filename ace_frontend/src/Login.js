@@ -49,35 +49,10 @@ class Login extends React.Component {
         }
         return (
             <Container>
-                <Row>
-                    <Col lg={8}>
-                        <Card className={'mt-5'}>
+                <Row className={'mt-5'}>
+                    <Col sm={{span: 6, offset: 3}}>
+                        <Card>
                             <Card.Body>
-                                {/*<form onSubmit={this.onSubmit}>*/}
-                                {/*    <fieldset>*/}
-                                {/*        <legend>Login</legend>*/}
-                                {/*        <p>*/}
-                                {/*            <label htmlFor="username">Username</label>*/}
-                                {/*            <input*/}
-                                {/*                type="text" id="username"*/}
-                                {/*                onChange={e => this.setState({username: e.target.value})}/>*/}
-                                {/*        </p>*/}
-                                {/*        <p>*/}
-                                {/*            <label htmlFor="password">Password</label>*/}
-                                {/*            <input*/}
-                                {/*                type="password" id="password"*/}
-                                {/*                onChange={e => this.setState({password: e.target.value})}/>*/}
-                                {/*        </p>*/}
-                                {/*        <p>*/}
-                                {/*            <button type="submit">Login</button>*/}
-                                {/*        </p>*/}
-
-                                {/*        <p>*/}
-                                {/*            Don't have an account? <Link to="/register">Register</Link>*/}
-                                {/*        </p>*/}
-                                {/*    </fieldset>*/}
-                                {/*</form>*/}
-
                                 <Card.Title>
                                     <h2>Sign into ACE</h2>
                                 </Card.Title>
@@ -105,7 +80,7 @@ class Login extends React.Component {
                                         />
                                     </Form.Group>
                                     <Button variant="primary" type="submit">
-                                        Submit
+                                        Log In
                                     </Button>
                                 </Form>
                             </Card.Body>

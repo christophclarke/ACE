@@ -6,7 +6,7 @@ import CourseCard from './CourseCard.js'
 const axios = require('axios');
 
 
-class CourseList extends Component {
+class CourseSearch extends Component {
 
     constructor(props) {
         super(props);
@@ -80,4 +80,4 @@ class CourseList extends Component {
     }
 }
 
-export default CourseList;
+export default CourseSearch;

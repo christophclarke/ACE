@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Card from 'react-bootstrap/Card'
 import Collapse from 'react-bootstrap/Collapse'
 import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
+import moment from "moment";
 
 
 const axios = require('axios');
@@ -49,8 +50,8 @@ class CourseCard extends Component {
 
     render() {
         const info = this.state.sections.map((entry, index) => {
-            var begin = new Date('1970-01-01T' + entry['time_begin'] + 'Z');
-            var end = new Date('1970-01-01T' + entry['time_end'] + 'Z');
+            var begin = moment(entry['time_begin'], "HH:mm:ss");
+            var end = moment(entry['time_end'], "HH:mm:ss");
             return (
                 <li key={entry['section_number']}>
                     {`${entry['section_number']} | ${entry['instructor']} \xa0\xa0\xa0\xa0`}
@@ -61,7 +62,8 @@ class CourseCard extends Component {
                         {entry['thursday'] ? "Th " : ""}
                         {entry['friday'] ? "F " : ""}
                         {entry['saturday'] ? "S " : ""}
-                        {`${begin.getHours()}:${begin.getMinutes()} - ${end.getHours()}:${end.getMinutes()}`}
+                        &nbsp; @ &nbsp;
+                        {begin.isValid() ? begin.format('LT') : "TBD"} - {end.isValid() ? end.format('LT') : "TBD"}
                     </span>
                 </li>
             )
@@ -78,7 +80,7 @@ class CourseCard extends Component {
             <Card>
                 <Card.Header as="h4">
                     <Link to={`/search/${this.props.data['department']}/${this.props.data['course_number']}`}>
-                        {this.props.data['course_number']}
+                        {`${this.props.department} ${this.props.data['course_number']}`}
                     </Link>
                 </Card.Header>
                 <Card.Body>
