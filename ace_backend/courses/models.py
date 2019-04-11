@@ -1,6 +1,7 @@
-from django.db import models
-from datetime import time
 import logging
+from datetime import time
+
+from django.db import models
 
 
 class Department(models.Model):
@@ -17,12 +18,19 @@ class Department(models.Model):
         Returns the predefined department, will create one if necessary
         Throws: Department.MultipleObjectsReturned
         """
-        dept, created = Department.objects.get_or_create(abbreviation=abbreviation,
-                                                         defaults={'full_name': full_name})
+        dept, created = Department.objects.update_or_create(abbreviation=abbreviation,
+                                                            defaults={'full_name': full_name})
         if created:
             cls.logger.debug(f"Department Created: {dept.__str__()}")
 
         return dept
+
+
+class AdditionalDepartmentInfo(models.Model):
+    department = models.ForeignKey(Department, on_delete=models.CASCADE, related_name="additional_info")
+    type = models.CharField(max_length=255, blank=True)
+    title = models.CharField(max_length=225, blank=True)
+    info = models.TextField(blank=True)
 
 
 class Instructor(models.Model):
@@ -41,7 +49,7 @@ class Instructor(models.Model):
         Returns the predefined instructor, will create one if necessary
         Throws: Instructor.MultipleObjectsReturned
         """
-        inst, created = Instructor.objects.get_or_create(name=name)
+        inst, created = Instructor.objects.update_or_create(name=name)
         if created:
             cls.logger.debug(f"Instructor Created: {inst.__str__()}")
 
@@ -54,6 +62,7 @@ class Course(models.Model):
     course_number = models.IntegerField()
     course_title = models.CharField(max_length=255)
     credit_hours = models.CharField(max_length=16)
+    course_description = models.TextField(blank=True)
     logger = logging.getLogger("Course")
 
     def __str__(self):
@@ -66,10 +75,10 @@ class Course(models.Model):
         Throws: Course.MultipleObjectsReturned
         """
 
-        course, created = Course.objects.get_or_create(department=department,
-                                                       course_number=course_number,
-                                                       defaults={'course_title': course_title,
-                                                                 'credit_hours': credit_hours})
+        course, created = Course.objects.update_or_create(department=department,
+                                                          course_number=course_number,
+                                                          defaults={'course_title': course_title,
+                                                                    'credit_hours': credit_hours})
 
         if created:
             cls.logger.debug(f"Course Created: {course.__str__()}")
@@ -101,18 +110,17 @@ class LabSection(models.Model):
     @classmethod
     def get_lab_section(cls, time_begin: time, time_end: time, days: (bool, bool, bool, bool, bool, bool), room: str,
                         special: str, inst: Instructor):
-
-        lab, created = LabSection.objects.get_or_create(time_begin=time_begin,
-                                                        time_end=time_end,
-                                                        monday=days[0],
-                                                        tuesday=days[1],
-                                                        wednesday=days[2],
-                                                        thursday=days[3],
-                                                        friday=days[4],
-                                                        saturday=days[5],
-                                                        instructor=inst,
-                                                        defaults={'room': room,
-                                                                  'special_enrollment': special})
+        lab, created = LabSection.objects.update_or_create(time_begin=time_begin,
+                                                           time_end=time_end,
+                                                           monday=days[0],
+                                                           tuesday=days[1],
+                                                           wednesday=days[2],
+                                                           thursday=days[3],
+                                                           friday=days[4],
+                                                           saturday=days[5],
+                                                           instructor=inst,
+                                                           defaults={'room':               room,
+                                                                     'special_enrollment': special})
 
         if created:
             cls.logger.debug(f"Section Created: {lab.__str__()}")
@@ -155,24 +163,24 @@ class Section(models.Model):
         Throws: Section.MultipleObjectsReturned
         """
 
-        section, created = Section.objects.get_or_create(course=course,
-                                                         section_number=section_number,
-                                                         defaults={'available_seats': available,
-                                                                   'enrolled_students': enrolled,
-                                                                   'section_type': sec_type,
-                                                                   'time_begin': time_b,
-                                                                   'time_end': time_e,
-                                                                   'monday': days[0],
-                                                                   'tuesday': days[1],
-                                                                   'wednesday': days[2],
-                                                                   'thursday': days[3],
-                                                                   'friday': days[4],
-                                                                   'saturday': days[5],
-                                                                   'room': room,
-                                                                   'special_enrollment': special,
-                                                                   'instructor': inst,
-                                                                   'additional_info': additional,
-                                                                   'lab_section': lab_section})
+        section, created = Section.objects.update_or_create(course=course,
+                                                            section_number=section_number,
+                                                            defaults={'available_seats':    available,
+                                                                      'enrolled_students':  enrolled,
+                                                                      'section_type':       sec_type,
+                                                                      'time_begin':         time_b,
+                                                                      'time_end':           time_e,
+                                                                      'monday':             days[0],
+                                                                      'tuesday':            days[1],
+                                                                      'wednesday':          days[2],
+                                                                      'thursday':           days[3],
+                                                                      'friday':             days[4],
+                                                                      'saturday':           days[5],
+                                                                      'room':               room,
+                                                                      'special_enrollment': special,
+                                                                      'instructor':         inst,
+                                                                      'additional_info':    additional,
+                                                                      'lab_section':        lab_section})
 
         if created:
             cls.logger.debug(f"Section Created: {section.__str__()}")

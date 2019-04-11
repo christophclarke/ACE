@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import Card from 'react-bootstrap/Card'
 import Collapse from 'react-bootstrap/Collapse'
-import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
+import {BrowserRouter as Router, Route, Link, Switch} from "react-router-dom";
 import moment from "moment";
 
 
@@ -77,36 +77,41 @@ class CourseCard extends Component {
         }
 
         return (
-            <Card>
-                <Card.Header as="h4">
-                    <Link to={`/search/${this.props.data['department']}/${this.props.data['course_number']}`}>
-                        {`${this.props.department} ${this.props.data['course_number']}`}
-                    </Link>
-                </Card.Header>
+            <Card className={'shadowed-hover'}>
                 <Card.Body>
-                    <Card.Title>
-                        {this.props.data['course_title']}
+                    <Card.Title className={"mb-3"} style={{display: 'flex', justifyContent: 'space-between'}}>
+                        <span>
+                            <Link to={`/search/${this.props.data['department']}/${this.props.data['course_number']}`}>
+                                {`${this.props.department} ${this.props.data['course_number']}`}
+                            </Link>
+                            &nbsp; | &nbsp;
+                            {this.props.data['course_title']}
+                        </span>
+
+                        <span className={'text-muted'}>{this.props.data['credit_hours']} Credit Hours</span>
                     </Card.Title>
                     <Card.Subtitle className="mb-2 text-muted">
-                        {this.props.data['credit_hours']} Credit Hours
                     </Card.Subtitle>
                     <Card.Text>
-                        Some quick example text to build on the card title and make up the bulk of
-                        the card's content.
+                        {this.props.data['course_description']}
                     </Card.Text>
                     {/* <ul className={classes.join(' ')}>{info}</ul> */}
-                    <Collapse in={this.state.isExpanded}>
+                    <Collapse in={this.state.isExpanded} className={'mt-3'}>
                         <div id="example-collapse-text">
-                            <ul className={classes.join(' ')}>{info}</ul>
+                            <ul className={classes.join(' ')} style={{marginBottom: "0"}}>{info}</ul>
                         </div>
                     </Collapse>
                 </Card.Body>
                 <Card.Footer>
                     <big onClick={this.handleClick}
-                        aria-controls="example-collapse-text"
-                        aria-expanded={this.state.isExpanded}
+                         aria-controls="example-collapse-text"
+                         aria-expanded={this.state.isExpanded}
                     >
                         {this.state.isExpanded ? "-" : "+"}
+                        &nbsp;
+                        <span className={'text-muted'} style={{fontSize: ".75em"}}>
+                            {this.state.isExpanded ? "Less Info" : "More Info"}
+                        </span>
                     </big>
                 </Card.Footer>
             </Card>

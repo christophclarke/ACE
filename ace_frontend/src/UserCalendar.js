@@ -70,13 +70,27 @@ function getSpanBlockStyle(rowStart, rowEnd, colStart, colEnd) {
     }
 }
 
-function getClassBlockStyle(col, start, end) {
+function getRandomColor(num) {
+    num >>>= 0;
+    let b = num & 0xFF,
+        g = (num & 0xFF00) >>> 8,
+        r = (num & 0xFF0000) >>> 16;
+
+    if (b < 128) b = 255 - b;
+    if (g < 128) g = 255 - g;
+    if (r < 128) r = 255 - r;
+
+    return `rgba(${(r * r) % 128 + 128}, ${(g* g) % 128 + 128}, ${(b * b) % 128 + 128}, 0.75)`;
+}
+
+function getClassBlockStyle(col, start, end, rgba) {
     return {
         textAlign: "center",
         padding: "5px",
         gridColumn: `${col} / ${col}`,
         gridRow: `${start} / ${end}`,
-        backgroundColor: 'rgba(117, 190, 218, 0.5)'
+        backgroundColor: rgba,
+        borderTop: '1px solid gray',
     }
 }
 
@@ -84,14 +98,16 @@ function CalendarItem(props) {
     const {sectionData} = props;
 
     const popover = (
-        <Popover id="popover-basic" title={`${sectionData["course"]} | ${sectionData["section_number"]}`}>
+        <Popover id="popover-basic" title={`${sectionData["course"]['department']} ${sectionData['course']['course_number']} | ${sectionData["section_number"]}`}>
+            <p>Course Title: <b>{sectionData['course']['course_title']}</b></p>
+            <p>Credit Hours: <b>{sectionData['course']['credit_hours']}</b></p>
             <p>Professor: {sectionData["instructor"] ? sectionData["instructor"] : "N/A"}</p>
             <p>Enrolled Students: {sectionData["enrolled_students"]}</p>
             <p>Available Seats: {sectionData["available_seats"]}</p>
             <p>Room: {sectionData["room"]}</p>
             <p>Special Enrollment Info: {sectionData["special_enrollment"] ? sectionData["special_enrollment"] : "N/A"}</p>
             <p>Additional Info: {sectionData["additional_info"] ? sectionData["additional_info"] : "N/A"}</p>
-            <Button onClick={() => props.handleDelete(sectionData["id"])}>
+            <Button variant='danger' onClick={() => props.handleDelete(sectionData["id"])}>
                 Remove This Section
             </Button>
         </Popover>
@@ -99,7 +115,7 @@ function CalendarItem(props) {
 
     return (
         <OverlayTrigger trigger="focus" placement="right" overlay={popover}>
-            <div style={props.style} tabIndex={-1}>{sectionData["course"]} ({sectionData['section_number']})</div>
+            <div style={props.style} tabIndex={-1}>{sectionData["course"]['department']} {sectionData['course']['course_number']} ({sectionData['section_number']})</div>
         </OverlayTrigger>
     )
 }
@@ -115,9 +131,9 @@ class UserCalendar extends Component {
             return <div key={index} style={getSingleBlockStyle(1, index + 2)}>{value}</div>
         });
 
-        let classDivs;
+        let allSectionDivs;
         if (this.props.sections) {
-            classDivs = this.props.sections.map((sectionData, index) => {
+            allSectionDivs = this.props.sections.map((sectionData, index) => {
                 const {monday, friday, thursday, wednesday, tuesday, saturday, time_begin, time_end} = sectionData;
                 const days = [monday, tuesday, wednesday, thursday, friday, saturday];
                 if (sectionData.id == null) window.location.reload();
@@ -138,15 +154,65 @@ class UserCalendar extends Component {
                     endRow += 1;
                 }
 
-                return days.map((onDay, index) => {
+                const color = getRandomColor(sectionData.course.course_number);
+
+                let lectureDivs;
+                lectureDivs =  days.map((onDay, index) => {
                     if (!onDay) return null;
-                    const {course} = sectionData;
                     return <CalendarItem key={index}
-                                         style={getClassBlockStyle(index + 2, startRow + 1, endRow + 1)}
+                                         style={getClassBlockStyle(index + 2, startRow + 1, endRow + 1, color)}
                                          sectionData={sectionData}
                                          handleDelete={(sectionId) => this.props.handleDelete(sectionId)}
                     />
                 });
+
+                let labDivs;
+                if (sectionData['lab_section']) {
+                    console.log("Lab Section Exists");
+                    const labDays = [sectionData['lab_section']['monday'],
+                        sectionData['lab_section']['tuesday'],
+                        sectionData['lab_section']['wednesday'],
+                        sectionData['lab_section']['thursday'],
+                        sectionData['lab_section']['friday'],
+                        sectionData['lab_section']['saturday']
+                    ];
+                    const labStart = moment(sectionData['lab_section']['time_begin'], 'HH:mm:ss');
+                    const startNorm = labStart.clone().subtract(7, 'hours');
+                    console.log(labStart.hour());
+                    console.log(startNorm.hour());
+                    let startRow = startNorm.hour() * 2;
+                    if (startNorm.minute() !== 0) {
+                        startRow += 1;
+                    }
+
+                    // if (sectionData.time_end == null) return null;
+                    const labEnd = moment(sectionData['lab_section']['time_end'], 'HH:mm:ss');
+                    const endNorm = labEnd.clone().subtract(7, 'hours');
+                    let endRow = endNorm.hour() * 2;
+                    if (startNorm.minute() !== 50) {
+                        endRow += 1;
+                    }
+
+                    labDivs = labDays.map((onDay, index) => {
+                        if (!onDay) return null;
+                        return <CalendarItem key={index + "l"}
+                                                    style={getClassBlockStyle(index + 2, startRow + 1, endRow + 1, color)}
+                                                    sectionData={sectionData}
+                                                    handleDelete={(sectionId) => this.props.handleDelete(sectionId)}
+                        />
+                    });
+
+                    console.log("labDivs:");
+                    console.log(labDivs)
+
+                }
+                // console.log("lectureDivs before:");
+                // console.log(lectureDivs);
+                let sectionDivs = lectureDivs.concat(labDivs);
+                // console.log("lectureDivs after:");
+                console.log(sectionDivs);
+
+                return sectionDivs;
             });
         }
 
@@ -165,7 +231,7 @@ class UserCalendar extends Component {
                     <div style={calendarStyle}>
                         {timeDivs}
                         {dayDivs}
-                        {classDivs}
+                        {allSectionDivs}
                     </div>
                 </Card.Body>
             </Card>

@@ -98,5 +98,76 @@ def reload_db():
         sleep(random.randint(1, 5))
 
 
+def get_course_descriptions():
+    root_url = "https://catalog.lsu.edu"
+    # search_home = "/content.php?filter%5B27%5D=-1&filter%5B29%5D=&filter%5Bcourse_type%5D=-1&filter%5Bkeyword%5D=&filter%5B32%5D=1&filter%5Bcpage%5D=1&cur_cat_oid=19&expand=&navoid=1759&search_database=Filter#acalog_template_course_filter"
+    # Final Page
+    # search_home = "/content.php?catoid=19&catoid=19&navoid=1759&filter%5B27%5D=-1&filter%5B29%5D=&filter%5Bcourse_type%5D=-1&filter%5Bkeyword%5D=&filter%5B32%5D=1&filter%5Bcpage%5D=55&filter%5Bitem_type%5D=3&filter%5Bonly_active%5D=1&filter%5B3%5D=1#acalog_template_course_filter"
+    # Middle Page
+    search_home = "/content.php?catoid=19&catoid=19&navoid=1759&filter%5B27%5D=-1&filter%5B29%5D=&filter%5Bcourse_type%5D=-1&filter%5Bkeyword%5D=&filter%5B32%5D=1&filter%5Bcpage%5D=18&filter%5Bitem_type%5D=3&filter%5Bonly_active%5D=1&filter%5B3%5D=1#acalog_template_course_filter"
+
+    def get_data_for_page(path):
+        search_url = requests.compat.urljoin(root_url, path)
+        search_home_page = requests.get(search_url, verify=False).text
+        search_home_soup = BeautifulSoup(search_home_page, "html.parser")
+
+        course_table = search_home_soup.select("table.table_default")[6]
+        a_tags = course_table.select("table > tr > td:nth-of-type(2) > a")
+        print(*a_tags, sep='\n')
+
+        for tag in a_tags:
+            course_url = requests.compat.urljoin(root_url, tag.get('href'))
+            course_page = requests.get(course_url, verify=False).text
+            course_soup = BeautifulSoup(course_page, "html.parser")
+            # Find the title because it has a recognizable ID
+            title = course_soup.find(id='course_preview_title')
+            # Grab the containing block
+            text_block = title.parent
+            # Get all the string data inside the parent element
+            full_course_info = " ".join(text_block.stripped_strings)
+
+            split_info = full_course_info.split(" ")
+            department_abbr = split_info[0]
+            course_num = split_info[1]
+            print(f"Dept: {department_abbr} | Num: {course_num}")
+            print(f"Info: {full_course_info}")
+
+            try:
+                end_course_num_index = full_course_info.index(course_num) + len(course_num)
+                beginning_paren_index = full_course_info.index('(')
+                end_paren_index = full_course_info.index(')') + 1
+                course_title = full_course_info[end_course_num_index:beginning_paren_index].strip()
+                print(course_title)
+                reduced_course_info = full_course_info[end_paren_index:].strip()
+            except ValueError:
+                course_title = title.string
+                title_index = full_course_info.index(course_title) + len(course_title)
+                reduced_course_info = full_course_info[title_index:]
+
+            try:
+                d = Department.objects.get(abbreviation=department_abbr)
+                c = Course.objects.get(department=d, course_number=course_num)
+                c.course_description = reduced_course_info
+                c.course_title = course_title
+                c.save()
+            except Department.DoesNotExist:
+                print(f"Department not found for {department_abbr}")
+            except Course.DoesNotExist:
+                print(f"Course not found for {department_abbr} {course_num}")
+
+        next_page_link = course_table.select("table > tr > td[colspan] > strong")[0].find_next_sibling('a')
+        if next_page_link is None:
+            print("Final Page")
+            return
+        else:
+            print("Not Last Page")
+            next_page = next_page_link.get('href')
+            sleep(random.randint(1, 5))
+            get_data_for_page(next_page)
+
+    get_data_for_page(search_home)
+
+
 if __name__ == "__main__":
-    reload_db()
+    # reload_db()
+    get_course_descriptions()

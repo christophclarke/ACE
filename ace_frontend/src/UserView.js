@@ -13,14 +13,16 @@ function UserView(props) {
     }
 
     return (
-        <Container>
+        <Container className={'mt-5'}>
             <Row>
-                <Col sm={{span: 8, offset: 2}}>
-                    <UserInfo username={props.userData.username} handleLogout={props.handleLogout}/>
+                <Col xs={4}>
+                    <UserInfo
+                        userData={props.userData}
+                        handleLogout={props.handleLogout}
+                        handleDelete={(sectionId) => props.handleDelete(sectionId)}
+                    />
                 </Col>
-            </Row>
-            <Row>
-                <Col sm={{span: 10, offset: 1}}>
+                <Col>
                     <UserCalendar
                         sections={props.userData.sections}
                         handleDelete={(sectionId) => props.handleDelete(sectionId)}

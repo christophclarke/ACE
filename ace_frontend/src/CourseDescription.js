@@ -66,14 +66,12 @@ class CourseDescription extends Component {
         });
 
         return (
-            <Container>
-                <Row>
-                    <Col>
-                        <h2>{this.props.department} {this.props.course}</h2>
-                        {sections}
-                    </Col>
-                </Row>
-            </Container>
+            <Row>
+                <Col>
+                    <h2 className={"search-header"}>{this.props.department} {this.props.course}</h2>
+                    <div className={"bubble-container"}>{sections}</div>
+                </Col>
+            </Row>
         )
     }
 }

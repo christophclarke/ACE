@@ -5,19 +5,16 @@ import Button from "react-bootstrap/Button";
 
 
 const Home = () => (
-    <div>
-        <Jumbotron>
+        <Jumbotron style={{height: 'calc(100vh - 55px)', margin: '0'}}>
             <h1>Welcome to ACE</h1>
             <p>
-                This is a simple hero unit, a simple jumbotron-style component for calling
-                extra attention to featured content or information.
+                The easier way to schedule LSU classes!
             </p>
             <p>
-                <Button variant="primary">Learn more</Button>
+                <a href={"/search/departments"} className={'btn btn-primary'}>Let's Go!</a>
             </p>
-        <Link to="/search/departments">Go To The Department Search</Link>
-        </Jumbotron>;
-    </div>
+        {/*<Link to="/search/departments">Go To The Department Search</Link>*/}
+        </Jumbotron>
 );
 
 export default Home;

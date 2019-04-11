@@ -166,9 +166,9 @@ class DepartmentPageParser:
         m_end = 2
         t_end = 3
         w_end = 4
-        th_end = 6
-        f_end = 7
-        s_end = 8
+        th_end = 5
+        f_end = 6
+        s_end = 7
         day_block = line[self.time_block_end:self.day_block_end]
 
         def is_monday() -> bool:
@@ -181,7 +181,7 @@ class DepartmentPageParser:
             return day_block[t_end:w_end] == 'W'
 
         def is_thursday() -> bool:
-            return day_block[w_end:th_end] == 'TH'
+            return day_block[w_end:th_end] == 'T'
 
         def is_friday() -> bool:
             return day_block[th_end:f_end] == 'F'

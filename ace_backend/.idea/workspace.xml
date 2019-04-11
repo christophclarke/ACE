@@ -1,7 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f39f4c01-0227-48ce-a39b-aae8cdf4b157" name="Default Changelist" comment="" />
+    <list default="true" id="f39f4c01-0227-48ce-a39b-aae8cdf4b157" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/../ace_frontend/public/old-favicon.ico" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/e811bb3b-6b4a-427f-b23f-66aae184993e.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/e811bb3b-6b4a-427f-b23f-66aae184993e/storage_v2/_src_/schema/main.uQUzAA.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/api/serializers.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/courses/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/courses/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db_load/parsers.py" beforeDir="false" afterPath="$PROJECT_DIR$/db_load/parsers.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db_refresh.py" beforeDir="false" afterPath="$PROJECT_DIR$/db_refresh.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ace_frontend/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../ace_frontend/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ace_frontend/public/favicon.ico" beforeDir="false" afterPath="$PROJECT_DIR$/../ace_frontend/public/favicon.ico" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ace_frontend/src/AceNav.js" beforeDir="false" afterPath="$PROJECT_DIR$/../ace_frontend/src/AceNav.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ace_frontend/src/CourseCard.js" beforeDir="false" afterPath="$PROJECT_DIR$/../ace_frontend/src/CourseCard.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ace_frontend/src/CourseDescription.js" beforeDir="false" afterPath="$PROJECT_DIR$/../ace_frontend/src/CourseDescription.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ace_frontend/src/CourseSearch.js" beforeDir="false" afterPath="$PROJECT_DIR$/../ace_frontend/src/CourseSearch.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ace_frontend/src/DepartmentDescription.js" beforeDir="false" afterPath="$PROJECT_DIR$/../ace_frontend/src/DepartmentDescription.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ace_frontend/src/DepartmentSearch.js" beforeDir="false" afterPath="$PROJECT_DIR$/../ace_frontend/src/DepartmentSearch.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ace_frontend/src/Home.js" beforeDir="false" afterPath="$PROJECT_DIR$/../ace_frontend/src/Home.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ace_frontend/src/SectionCard.js" beforeDir="false" afterPath="$PROJECT_DIR$/../ace_frontend/src/SectionCard.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ace_frontend/src/UserCalendar.js" beforeDir="false" afterPath="$PROJECT_DIR$/../ace_frontend/src/UserCalendar.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ace_frontend/src/UserInfo.js" beforeDir="false" afterPath="$PROJECT_DIR$/../ace_frontend/src/UserInfo.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ace_frontend/src/UserView.js" beforeDir="false" afterPath="$PROJECT_DIR$/../ace_frontend/src/UserView.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ace_frontend/src/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/../ace_frontend/src/index.css" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,16 +48,16 @@
     <expand>
       <path>
         <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
-        <item name="db.sqlite3" type="feb32156:DbDataSourceImpl" />
+        <item name="db" type="feb32156:DbDataSourceImpl" />
       </path>
       <path>
         <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
-        <item name="db.sqlite3" type="feb32156:DbDataSourceImpl" />
+        <item name="db" type="feb32156:DbDataSourceImpl" />
         <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
       </path>
       <path>
         <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
-        <item name="db.sqlite3" type="feb32156:DbDataSourceImpl" />
+        <item name="db" type="feb32156:DbDataSourceImpl" />
         <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
         <item name="main: schema" type="981a47c2:SqliteImplModel$Schema" />
       </path>
@@ -44,46 +70,42 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/users/models.py">
+        <entry file="file://$PROJECT_DIR$/db_refresh.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="138">
-              <caret line="6" column="32" selection-start-line="6" selection-start-column="32" selection-end-line="6" selection-end-column="32" />
-              <folding>
-                <element signature="e#0#51#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/api/urls.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="483">
-              <caret line="21" selection-start-line="21" selection-end-line="21" />
-              <folding>
-                <element signature="e#0#46#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/api/views.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3127">
-              <caret line="138" column="36" selection-start-line="138" selection-start-column="36" selection-end-line="138" selection-end-column="36" />
-              <folding>
-                <element signature="e#0#44#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="2300">
+              <caret line="107" selection-start-line="107" selection-end-line="107" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/courses/models.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="523">
+              <caret line="27" selection-start-line="27" selection-end-line="27" />
+              <folding>
+                <element signature="e#0#14#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="das://9b9fa493-0fc8-4aaa-94db-fc3dd3c2cbd5/schema/main/table/courses_department">
+          <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+            <state>
+              <filtering enabled="true">
+                <filter text="" />
+              </filtering>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/api/serializers.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="489">
-              <caret line="76" column="15" selection-start-line="76" selection-start-column="15" selection-end-line="76" selection-end-column="15" />
+            <state relative-caret-position="539">
+              <caret line="109" column="82" selection-start-line="109" selection-start-column="82" selection-end-line="109" selection-end-column="82" />
               <folding>
                 <element signature="e#0#44#0" expanded="true" />
               </folding>
@@ -106,7 +128,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/db_refresh.py" />
         <option value="$PROJECT_DIR$/ace/urls.py" />
         <option value="$PROJECT_DIR$/ace/settings.py" />
         <option value="$PROJECT_DIR$/users/forms.py" />
@@ -118,15 +139,19 @@
         <option value="$PROJECT_DIR$/users/models.py" />
         <option value="$PROJECT_DIR$/api/urls.py" />
         <option value="$PROJECT_DIR$/api/views.py" />
+        <option value="$PROJECT_DIR$/db_load/parsers.py" />
+        <option value="$PROJECT_DIR$/db_refresh.py" />
         <option value="$PROJECT_DIR$/api/serializers.py" />
+        <option value="$PROJECT_DIR$/courses/models.py" />
+        <option value="$APPLICATION_CONFIG_DIR$/consoles/.datagrid/cell" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" fullScreen="true">
-    <option name="x" value="-1200" />
-    <option name="y" value="-562" />
-    <option name="width" value="1200" />
-    <option name="height" value="1920" />
+    <option name="x" value="-307" />
+    <option name="y" value="-1440" />
+    <option name="width" value="3440" />
+    <option name="height" value="1440" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -134,18 +159,12 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
             <path>
               <item name="ace_backend" type="b2602c69:ProjectViewProjectNode" />
               <item name="ace_backend" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ace_backend" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ace_backend" type="462c0819:PsiDirectoryNode" />
-              <item name="ace" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="ace_backend" type="b2602c69:ProjectViewProjectNode" />
@@ -160,12 +179,13 @@
             <path>
               <item name="ace_backend" type="b2602c69:ProjectViewProjectNode" />
               <item name="ace_backend" type="462c0819:PsiDirectoryNode" />
-              <item name="users" type="462c0819:PsiDirectoryNode" />
+              <item name="db_load" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -190,13 +210,36 @@
       </list>
     </option>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Python.db_refresh">
+    <configuration name="db_refresh" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
+      <module name="ace_backend" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="$USER_HOME$/.pyenv/versions/ace-env/bin/python" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/db_refresh.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="ace_backend" type="Python.DjangoServer" factoryName="Django server">
       <module name="ace_backend" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
+        <env name="DJANGO_SETTINGS_MODULE" value="ace.settings" />
       </envs>
       <option name="SDK_HOME" value="" />
       <option name="WORKING_DIRECTORY" value="" />
@@ -214,6 +257,10 @@
       <option name="customRunCommand" value="" />
       <method v="2" />
     </configuration>
+    <list>
+      <item itemvalue="Django server.ace_backend" />
+      <item itemvalue="Python.db_refresh" />
+    </list>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -231,42 +278,52 @@
       <workItem from="1553839142823" duration="7055000" />
       <workItem from="1554101499880" duration="2071000" />
       <workItem from="1554273973080" duration="1808000" />
+      <workItem from="1554430972183" duration="4058000" />
+      <workItem from="1554665000561" duration="704000" />
+      <workItem from="1554690107480" duration="793000" />
+      <workItem from="1554696463648" duration="2761000" />
+      <workItem from="1554841289393" duration="14760000" />
+      <workItem from="1554911950983" duration="774000" />
+      <workItem from="1554947716253" duration="3375000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="16943000" />
+    <option name="totallyTimeSpent" value="44168000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-1200" y="-562" width="1200" height="1920" extended-state="0" />
+    <frame x="-307" y="-1440" width="3440" height="1440" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.3747841" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.06798117" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.32987553" />
-      <window_info anchor="bottom" id="Run" order="2" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.3293944" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.3293944" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.3988183" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Docker" order="7" weight="0.32987553" />
       <window_info anchor="bottom" id="Version Control" order="8" />
-      <window_info anchor="bottom" id="Database Changes" order="9" />
+      <window_info anchor="bottom" id="Database Changes" order="9" show_stripe_button="false" weight="0.32987553" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
-      <window_info anchor="bottom" id="Terminal" order="11" visible="true" weight="0.18647765" />
-      <window_info anchor="bottom" id="Python Console" order="12" />
+      <window_info anchor="bottom" id="Terminal" order="11" visible="true" weight="0.33161005" />
+      <window_info anchor="bottom" id="Python Console" order="12" weight="0.32883817" />
       <window_info anchor="bottom" id="Database Console" order="13" weight="0.32987553" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="right" id="SciView" order="3" weight="0.32967034" />
-      <window_info anchor="right" id="Database" order="4" weight="0.1812831" />
+      <window_info active="true" anchor="right" id="Database" order="4" visible="true" weight="0.086815774" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/ace_backend$db_refresh.coverage" NAME="db_refresh Coverage Results" MODIFIED="1554889013553" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/e811bb3b-6b4a-427f-b23f-66aae184993e/console.sql">
@@ -277,16 +334,6 @@
         <state>
           <folding>
             <element signature="e#0#25#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/db_refresh.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="202">
-          <caret line="29" column="21" selection-start-line="29" selection-start-column="21" selection-end-line="29" selection-end-column="21" />
-          <folding>
-            <element signature="e#0#9#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -382,16 +429,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/api/models.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="das://e811bb3b-6b4a-427f-b23f-66aae184993e/schema/main/table/courses_course">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/courses/urls.py">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -401,32 +438,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="das://e811bb3b-6b4a-427f-b23f-66aae184993e/schema/main/table/users_aceuser_courses">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/courses/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <folding>
-            <element signature="e#0#28#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/api/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="483">
-          <caret line="21" selection-start-line="21" selection-end-line="21" />
-          <folding>
-            <element signature="e#0#46#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="das://e811bb3b-6b4a-427f-b23f-66aae184993e/schema/main/table/users_aceuser_courses" />
     <entry file="file://$PROJECT_DIR$/courses/views.py">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -446,19 +458,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/api/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3127">
-          <caret line="138" column="36" selection-start-line="138" selection-start-column="36" selection-end-line="138" selection-end-column="36" />
-          <folding>
-            <element signature="e#0#44#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="das://e811bb3b-6b4a-427f-b23f-66aae184993e/schema/main/table/users_aceuser_sections" />
     <entry file="file://$PROJECT_DIR$/users/models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="138">
+        <state relative-caret-position="92">
           <caret line="6" column="32" selection-start-line="6" selection-start-column="32" selection-end-line="6" selection-end-column="32" />
           <folding>
             <element signature="e#0#51#0" expanded="true" />
@@ -466,26 +469,172 @@
         </state>
       </provider>
     </entry>
-    <entry file="das://e811bb3b-6b4a-427f-b23f-66aae184993e/schema/main/table/users_aceuser">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
+    <entry file="file://$PROJECT_DIR$/api/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="414">
+          <caret line="21" selection-start-line="21" selection-end-line="21" />
+          <folding>
+            <element signature="e#0#46#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="das://e811bb3b-6b4a-427f-b23f-66aae184993e/schema/main/table/users_aceuser_sections">
+    <entry file="das://e811bb3b-6b4a-427f-b23f-66aae184993e/schema/main/table/users_aceuser" />
+    <entry file="file://$PROJECT_DIR$/Dockerfile">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/page.html">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/models.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$USER_HOME$/.pyenv/versions/3.7.2/lib/python3.7/tokenize.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="446" selection-start-line="446" selection-end-line="446" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="679">
+          <caret line="138" column="36" selection-start-line="138" selection-start-column="36" selection-end-line="138" selection-end-column="36" />
+          <folding>
+            <element signature="e#0#44#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/.pyenv/versions/ace-env/lib/python3.7/site-packages/django/db/models/query.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="327">
+          <caret line="186" selection-start-line="186" selection-end-line="186" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/.pyenv/versions/ace-env/lib/python3.7/site-packages/django/utils/tree.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="506">
+          <caret line="24" selection-start-line="24" selection-end-line="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/.pyenv/versions/ace-env/lib/python3.7/site-packages/django/db/models/sql/query.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="527">
+          <caret line="200" selection-start-line="200" selection-end-line="200" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://e811bb3b-6b4a-427f-b23f-66aae184993e/schema/main/table/courses_course" />
+    <entry file="file://$USER_HOME$/.pyenv/versions/ace-env/lib/python3.7/site-packages/django/db/models/options.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="580">
+          <caret line="343" selection-start-line="343" selection-end-line="343" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/.pyenv/versions/ace-env/lib/python3.7/site-packages/django/db/models/manager.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="327">
+          <caret line="177" selection-start-line="177" selection-end-line="177" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://e811bb3b-6b4a-427f-b23f-66aae184993e/schema/main/table/courses_section" />
+    <entry file="file://$PROJECT_DIR$/db_load/parsers.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-649">
+          <caret line="87" selection-start-line="87" selection-end-line="87" />
+          <folding>
+            <element signature="e#0#25#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://9b9fa493-0fc8-4aaa-94db-fc3dd3c2cbd5/schema/main/table/courses_section">
       <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
         <state>
-          <filtering enabled="true" />
+          <filtering enabled="true">
+            <filter text="" />
+          </filtering>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/.pyenv/versions/3.7.2/envs/ace-env/lib/python3.7/site-packages/OpenSSL/SSL.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="196">
+          <caret line="1816" column="50" lean-forward="true" selection-start-line="1816" selection-start-column="50" selection-end-line="1816" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/out.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret selection-end-line="531" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://9b9fa493-0fc8-4aaa-94db-fc3dd3c2cbd5/schema/main/table/courses_course">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true">
+            <filter text="" />
+          </filtering>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/db_refresh.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2300">
+          <caret line="107" selection-start-line="107" selection-end-line="107" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/api/serializers.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="489">
-          <caret line="76" column="15" selection-start-line="76" selection-start-column="15" selection-end-line="76" selection-end-column="15" />
+        <state relative-caret-position="539">
+          <caret line="109" column="82" selection-start-line="109" selection-start-column="82" selection-end-line="109" selection-end-column="82" />
           <folding>
             <element signature="e#0#44#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://9b9fa493-0fc8-4aaa-94db-fc3dd3c2cbd5/schema/main/table/users_aceuser">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true">
+            <filter text="" />
+          </filtering>
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://9b9fa493-0fc8-4aaa-94db-fc3dd3c2cbd5/schema/main/table/courses_additionaldepartmentinfo">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true">
+            <filter text="" />
+          </filtering>
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://9b9fa493-0fc8-4aaa-94db-fc3dd3c2cbd5/schema/main/table/courses_department">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true">
+            <filter text="" />
+          </filtering>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/courses/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="523">
+          <caret line="27" selection-start-line="27" selection-end-line="27" />
+          <folding>
+            <element signature="e#0#14#0" expanded="true" />
           </folding>
         </state>
       </provider>

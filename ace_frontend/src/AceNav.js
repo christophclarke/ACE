@@ -15,7 +15,7 @@ class AceNav extends React.Component {
         }
 
         return (
-            <Navbar collapseOnSelect expand="lg" bg="primary" variant="dark">
+            <Navbar collapseOnSelect expand="lg" bg="primary" variant="dark" style={{zIndex: '1000'}}>
                 <Navbar.Brand href="/">ACE Courses</Navbar.Brand>
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <Navbar.Collapse id="responsive-navbar-nav">
