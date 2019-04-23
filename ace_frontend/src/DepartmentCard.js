@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import Card from 'react-bootstrap/Card'
 // import Collapse from 'react-bootstrap/Collapse'
-import { Link } from "react-router-dom";
+import {Link} from "react-router-dom";
 
 
 const axios = require('axios');
@@ -19,6 +19,7 @@ class DepartmentCard extends Component {
     }
 
     componentDidMount() {
+        // Get course data for this department
         const url = `${this.state.apiUrl}/departments/${this.state.data['abbreviation']}/courses`;
         axios.get(url)
             .then((response) => {
@@ -38,8 +39,6 @@ class DepartmentCard extends Component {
             });
     }
 
-    elementClass = "card";
-
     handleClick(event) {
         this.setState({
             isExpanded: !this.state.isExpanded
@@ -47,14 +46,6 @@ class DepartmentCard extends Component {
     }
 
     render() {
-        const info = this.state.courses.map((entry, index) => {
-            return (
-                <li key={index}>
-                    {entry['course_number']}
-                </li>
-            )
-        });
-
         return (
             <Card className={"shadowed-hover"}>
                 <Card.Body>
@@ -69,23 +60,7 @@ class DepartmentCard extends Component {
                     <Card.Text>
                         {this.state.courses.length} Courses
                     </Card.Text>
-                    {/* <ul className={classes.join(' ')}>{info}</ul> */}
-                    {/* <Collapse in={this.state.isExpanded}>
-                        <div id="example-collapse-text">
-                            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus
-                            terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer
-                            labore wes anderson cred nesciunt sapiente ea proident.
-                        </div>
-                    </Collapse> */}
                 </Card.Body>
-                {/* <Card.Footer>
-                    <big onClick={this.handleClick}
-                        aria-controls="example-collapse-text"
-                        aria-expanded={this.state.isExpanded}
-                    >
-                        {this.state.isExpanded ? "-" : "+"}
-                    </big>
-                </Card.Footer> */}
             </Card>
         )
     }

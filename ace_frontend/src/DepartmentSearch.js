@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import DepartmentCard from './DepartmentCard'
 import {Redirect} from "react-router-dom";
 

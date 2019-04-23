@@ -1,6 +1,6 @@
 import React from 'react'
 import {Redirect} from 'react-router-dom'
-import {Button, Col, Container, Row} from 'react-bootstrap';
+import {Col, Container, Row} from 'react-bootstrap';
 import UserInfo from "./UserInfo";
 import UserCalendar from "./UserCalendar";
 

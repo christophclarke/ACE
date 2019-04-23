@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import axios from 'axios';
 import SectionCard from "./SectionCard";
-import {Col, Container, Row} from "react-bootstrap";
+import {Col, Row} from "react-bootstrap";
 
 class CourseDescription extends Component {
     constructor(props) {
@@ -13,6 +13,7 @@ class CourseDescription extends Component {
     }
 
     componentDidMount() {
+        // Get course data
         const courseUrl = `${this.props.url}/departments/${this.props.department}/courses/${this.props.course}`;
         axios.get(courseUrl)
             .then((response) => {
@@ -31,10 +32,12 @@ class CourseDescription extends Component {
                 // always executed
             });
 
+        // Get section data
         const sectionsUrl = `${courseUrl}/sections`;
         axios.get(sectionsUrl)
             .then((response) => {
                 console.log(response.data);
+                // Sort sections by section number ascending
                 const data = response.data.sort((a, b) => {
                     return a.section_number > b.section_number
                 });
@@ -54,6 +57,7 @@ class CourseDescription extends Component {
     }
 
     render() {
+        // Generate a list of Section Cards
         const sections = this.state.sections.map((value, index) => {
             return (
                 <SectionCard

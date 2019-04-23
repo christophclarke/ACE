@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import Card from 'react-bootstrap/Card'
 import Collapse from 'react-bootstrap/Collapse'
-import {BrowserRouter as Router, Route, Link, Switch} from "react-router-dom";
+import {Link} from "react-router-dom";
 import moment from "moment";
 
 
@@ -19,10 +19,12 @@ class CourseCard extends Component {
     }
 
     componentDidMount() {
+        // Get the section info for this course
         const url = `${this.props.url}/departments/${this.props.department}/courses/${this.props.data['course_number']}/sections/`;
         axios.get(url)
             .then((response) => {
                 const data = response.data;
+                // Sort by section number ascending
                 data.sort((a, b) => {
                     return a['section_number'] - b['section_number'];
                 });
@@ -39,8 +41,6 @@ class CourseCard extends Component {
                 // always executed
             });
     }
-
-    elementClass = "card";
 
     handleClick(event) {
         this.setState({

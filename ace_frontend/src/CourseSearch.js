@@ -22,6 +22,7 @@ class CourseSearch extends Component {
     }
 
     componentDidMount() {
+        // Get list of courses
         const url = this.props.url + "/departments/" + this.props.department + "/courses/";
 
         axios.get(url)
@@ -57,9 +58,8 @@ class CourseSearch extends Component {
         })
     }
 
-    // sectionsConfilct()
-
     render() {
+        // Filter based on the search contents
         let filteredData = this.state.data.filter(
             (course) => {
                 return `${course['department']} ${course['course_number']}`.toUpperCase().includes(this.state.search.toUpperCase())
@@ -67,14 +67,7 @@ class CourseSearch extends Component {
             }
         );
 
-        // if (this.state.onlyNonConflict) {
-        //     filteredData = filteredData.filter(
-        //         (course) => {
-        //             return
-        //         }
-        //     )
-        // }
-
+        // Generate the Course Cards for the filtered data
         const result = filteredData.map((entry, index) => {
             return <CourseCard
                 url={this.props.url}

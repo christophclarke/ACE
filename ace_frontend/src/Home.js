@@ -1,7 +1,5 @@
 import React from 'react';
-import { Link } from "react-router-dom";
 import Jumbotron from "react-bootstrap/Jumbotron";
-import Button from "react-bootstrap/Button";
 
 
 const Home = () => (
@@ -13,7 +11,6 @@ const Home = () => (
             <p>
                 <a href={"/search/departments"} className={'btn btn-primary'}>Let's Go!</a>
             </p>
-        {/*<Link to="/search/departments">Go To The Department Search</Link>*/}
         </Jumbotron>
 );
 

@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Button, ButtonToolbar, Card, Col, Container, Row} from 'react-bootstrap'
+import {Button, Card, Col, Container, Row} from 'react-bootstrap'
 import moment from "moment";
 
 function SmallSectionCard(props) {
@@ -18,9 +18,6 @@ function SmallSectionCard(props) {
                         </h6>
                     </Col>
                     <Col style={{padding:'0'}}>
-                        {/*<Button variant="danger" size="sm" style={{float: 'right', marginTop: '-5px', padding: '6px', backgroundColor: 'red'}}>*/}
-                        {/*    Remove*/}
-                        {/*</Button>*/}
                         <Button variant="danger" size="sm" style={{float: 'right', marginTop: '-8.5px'}} onClick={() => props.handleDelete(sectionData["id"])}>
                             Remove
                         </Button>

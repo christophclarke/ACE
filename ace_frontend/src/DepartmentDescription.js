@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
-import {BrowserRouter as Router, Route, Link, Switch, Redirect} from "react-router-dom";
+import {Redirect, Route} from "react-router-dom";
 import CourseSearch from './CourseSearch';
 import CourseDescription from "./CourseDescription";
 import axios from 'axios';
-import {Col, Container, Row} from "react-bootstrap";
+import {Col, Row} from "react-bootstrap";
 
 class DepartmentDescription extends Component {
     constructor(props) {
@@ -89,8 +89,8 @@ class DepartmentDescription extends Component {
                             </ul>
                         </div>
                     </Col>
+
                     <Col xs={9}>
-                        {/* <Link to="/departments">Go Back</Link> */}
                         <Route exact path={this.props.match.url + "/"} render={(props) => (
                             <CourseSearch url={this.props.url} department={this.props.department} userData={this.props.userData}/>
                         )}/>
