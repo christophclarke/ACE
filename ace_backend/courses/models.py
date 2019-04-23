@@ -27,6 +27,7 @@ class Department(models.Model):
 
 
 class AdditionalDepartmentInfo(models.Model):
+    # Auto Generated AdditionalDepartmentInfoID
     department = models.ForeignKey(Department, on_delete=models.CASCADE, related_name="additional_info")
     type = models.CharField(max_length=255, blank=True)
     title = models.CharField(max_length=225, blank=True)

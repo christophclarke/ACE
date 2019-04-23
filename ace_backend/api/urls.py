@@ -1,6 +1,7 @@
-from django.urls import include, path, re_path
-from rest_framework_nested import routers
 import rest_framework.routers
+from django.urls import include, re_path
+from rest_framework_nested import routers
+
 from . import views
 
 router = routers.DefaultRouter()
@@ -16,9 +17,6 @@ course_router.register(r'sections', views.SectionViewSet, base_name='sections')
 
 direct_router = rest_framework.routers.SimpleRouter()
 direct_router.register(r"sections", views.DirectSectionViewSet, base_name='sections_direct')
-
-# sections_router = routers.NestedSimpleRouter(course_router, r'sections', lookup='section')
-# sections_router.register(r'labs', views.SectionViewSet, base_name='labs')
 
 app_name = "api"
 urlpatterns = [

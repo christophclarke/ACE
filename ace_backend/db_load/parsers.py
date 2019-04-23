@@ -1,6 +1,7 @@
 from datetime import time
 from typing import List
-from db_load.data_objects import SectionData, LabSectionData
+
+from db_load.data_objects import LabSectionData, SectionData
 
 
 class DepartmentPageParser:

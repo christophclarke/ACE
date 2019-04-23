@@ -1,5 +1,5 @@
-from datetime import time
 from dataclasses import dataclass
+from datetime import time
 
 
 @dataclass

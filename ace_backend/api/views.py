@@ -1,34 +1,17 @@
+from courses.models import Course, Department, Section
 from django.contrib.auth.models import Group
-from courses.models import Department, Course, Section
 from django.shortcuts import get_object_or_404
 from knox.models import AuthToken
-from rest_framework import viewsets, generics, permissions
-from rest_framework.views import APIView
+from rest_framework import generics, permissions, viewsets
 from rest_framework.response import Response
-from . import serializers
 from users.models import AceUser
 
-
-class MultipleFieldLookupMixin(object):
-    """
-    Apply this mixin to any view or viewset to get multiple field filtering
-    based on a `lookup_fields` attribute, instead of the default single field filtering.
-    """
-    def get_object(self):
-        queryset = self.get_queryset()             # Get the base queryset
-        queryset = self.filter_queryset(queryset)  # Apply any filter backends
-        filter = {}
-        for field in self.lookup_fields:
-            if self.kwargs[field]: # Ignore empty fields.
-                filter[field] = self.kwargs[field]
-        obj = get_object_or_404(queryset, **filter)  # Lookup the object
-        self.check_object_permissions(self.request, obj)
-        return obj
+from . import serializers
 
 
 class UserViewSet(viewsets.ModelViewSet):
     """
-    API endpoint that allows users to be viewed or edited.
+    API endpoint that allows users to be viewed.
     """
     queryset = AceUser.objects.all().order_by('-date_joined')
     serializer_class = serializers.UserSerializer
@@ -44,31 +27,16 @@ class GroupViewSet(viewsets.ModelViewSet):
 
 class DepartmentViewSet(viewsets.ModelViewSet):
     """
-    API endpoint that allows groups to be viewed or edited.
+    API endpoint that allows departments to be viewed.
     """
     serializer_class = serializers.DepartmentSerializer
 
     def get_queryset(self):
         return Department.objects.filter()
 
-    # def list(self, request, ):
-    #     queryset = Department.objects.filter()
-    #     serializer = serializers.DepartmentSerializer(queryset, many=True, context={'request': request})
-    #     return Response(serializer.data)
-    #
-    # def retrieve(self, request, pk=None):
-    #     queryset = Department.objects.filter()
-    #     client = get_object_or_404(queryset, abbr=pk)
-    #     serializer = serializers.DepartmentSerializer(client, context={'request': request})
-    #     return Response(serializer.data)
-
 
 class CourseViewSet(viewsets.ViewSet):
     serializer_class = serializers.CourseSerializer
-
-    # def get_queryset(self):
-    #     print(self.kwargs)
-    #     return Course.objects.filter(department=self.kwargs['department_pk'])
 
     def list(self, request, department_pk=None):
         queryset = Course.objects.filter(department=department_pk)

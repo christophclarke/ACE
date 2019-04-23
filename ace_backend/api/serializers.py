@@ -1,16 +1,8 @@
+from courses.models import AdditionalDepartmentInfo, Course, Department, LabSection, Section
 from django.contrib.auth import authenticate
 from django.contrib.auth.models import Group
-from courses.models import Department, Course, Section, LabSection, AdditionalDepartmentInfo
 from rest_framework import serializers
-from rest_framework.relations import HyperlinkedIdentityField
-from rest_framework.serializers import ListSerializer
-from rest_framework_nested.relations import NestedHyperlinkedRelatedField
 from users.models import AceUser
-
-# class UserSerializer(serializers.HyperlinkedModelSerializer):
-#     class Meta:
-#         model = User
-#         fields = ('url', 'username', 'email', 'groups')
 
 
 class GroupSerializer(serializers.HyperlinkedModelSerializer):
@@ -48,13 +40,6 @@ class CourseSerializer(serializers.ModelSerializer):
         model = Course
         fields = ('course_number', 'course_title', 'credit_hours', 'course_description', 'department')
 
-    # sections = NestedHyperlinkedRelatedField(
-    #     many=True,
-    #     read_only=True,   # Or add a queryset
-    #     view_name='department-courses-sections-detail',
-    #     parent_lookup_kwargs={'course_pk': 'course__pk'}
-    # )
-
 
 class LabSectionSerializer(serializers.ModelSerializer):
     class Meta:
@@ -70,24 +55,6 @@ class SectionSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Section
-        # fields = ("available_seats",
-        #           "enrolled_students",
-        #           "section_type",
-        #           "section_number",
-        #           "time_begin",
-        #           "time_end",
-        #           "monday",
-        #           "tuesday",
-        #           "wednesday",
-        #           "thursday",
-        #           "friday",
-        #           "saturday",
-        #           "room",
-        #           "special_enrollment",
-        #           "additional_info",
-        #           "course",
-        #           "instructor",
-        #           "lab_section")
         fields = "__all__"
 
 
@@ -106,19 +73,11 @@ class AdditionalDepartmentInfoSerializer(serializers.ModelSerializer):
 
 
 class DepartmentSerializer(serializers.ModelSerializer):
-    # url = serializers.HyperlinkedIdentityField(view_name="api:department-detail")
     additional_info = AdditionalDepartmentInfoSerializer(many=True, read_only=True)
 
     class Meta:
         model = Department
         fields = ('abbreviation', 'full_name', 'additional_info')
-
-    # courses = NestedHyperlinkedRelatedField(
-    #     many=True,
-    #     read_only=True,   # Or add a queryset
-    #     view_name='department-courses-detail',
-    #     parent_lookup_kwargs={'department_pk': 'department__pk'}
-    # )
 
 
 class DirectSectionSerializer(serializers.ModelSerializer):

@@ -1,11 +1,13 @@
 import os
-from time import sleep
-from bs4 import BeautifulSoup
-import requests
 import random
-import django
-from db_load.parsers import DepartmentPageParser
 from collections import namedtuple
+from time import sleep
+
+import django
+import requests
+from bs4 import BeautifulSoup
+from db_load.parsers import DepartmentPageParser
+
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "ace.settings")
 django.setup()
 from courses.models import Section, Course, Department, Instructor, LabSection
@@ -169,5 +171,5 @@ def get_course_descriptions():
 
 
 if __name__ == "__main__":
-    # reload_db()
+    reload_db()
     get_course_descriptions()
